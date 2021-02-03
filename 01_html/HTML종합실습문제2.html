@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>HTML 종합 실습 문제2</title>
+ </head>
+ <body>
+	<form>
+		<fieldset>
+			<legend>납품자 정보</legend>
+			<ol>
+				<li>납품자명(필수) : <input type="text" name="name" required></li><br>
+				<li>email(필수) : <input type="email" placeholder="answer@naver.com" name="email" required></li><br>
+				<li>홈페이지 : <input type="url" value="http://"></li><br>
+				<li>지역 : 
+					<select name="region" id="region">
+						<optgroup label="한국">
+							<option value="seoul">서울</option>
+							<option value="busan" selected>부산</option>
+						</optgroup>
+						<optgroup label="중국">
+							<option value="beijing">북경</option>
+							<option value="sanghai">상해</option>
+						</optgroup>
+					</select>
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<legend>납품 정보</legend>
+				<ul>
+					<li>상품명(필수) : <input type="text" name="pName" required></li><br>
+					<li>납품수량(필수) : <input type="number" name="amount" min=100 placeholder="최소 100" required></li><br>
+					<li>납품등급(필수) : <input type="range" name="pGrade" required></li><br>
+					<li>기타사항 : <textarea name="etc" rows=2></textarea></li>
+				</ul>
+		</fieldset>
+		<br>
+		<input type="submit" value="send message">
+	</form>
+ </body>
+</html>

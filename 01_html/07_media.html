@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title>
+</head>
+<body>
+    <!-- 이전의 HTML4에서는 지원하지 않았던 것 : 동영상, 미디어 등 
+         HTML4 | active-x, flash
+         HTML5 | audio, video -->
+
+    <h1>Media</h1>
+    <h2>audio</h2>
+    <audio src="sample/audio/major.mp3" controls loop></audio>
+        <!-- fallback : 해당태그를 브라우저에서 지원하지 않는 경우 실행 -->
+        당신의 브라우저는 audio 태그를 지원하지 않습니다.
+        최신 브라우저로 업데이트하세요 <a href="edge다운로드링크">바로가기</a> 
+    <!-- 위에 controls만 적어도 결과가 동일하다. -->
+    <!-- autoplay 자동재생 -->
+    <!-- loop 반복재생 -->
+    <!-- muted 음소거여부 -->
+
+    <h2>video</h2>
+    <!-- autoplay 자동재생 -->
+    <!-- loop 반복재생 -->
+    <!-- muted 음소거여부 -->
+    <!-- poster 썸네일 이미지 -->
+    <video src="sample/video/small.mp4" controls poster="sample/image/hyunta.jpg"></video>
+
+    <br>
+    <iframe width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/zqTwOoElxBA" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</body>
+</html>

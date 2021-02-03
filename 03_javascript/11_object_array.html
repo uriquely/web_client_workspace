@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Array</title>
+</head>
+<body>
+    <h1>객체배열</h1>
+    <input type="button" value="실행" onclick="test1();">
+
+    <script>
+    function test1() {
+        var pet1 = {
+            name : '폰댕이',
+            breed : '나만',
+            weight : 4,
+            age : 99
+        };
+        var pet2 = {
+            name : '폰댕이2',
+            breed : '댕댕이',
+            weight : 16,
+            age : 999
+        };
+        var pet3 = {
+            name : '폰댕이3',
+            breed : '없어',
+            weight : 5,
+            age : 9999
+        };
+
+        // var arr = [pet1, pet2, pet3];
+        var arr = [];
+        arr.push(pet1);
+        arr.push(pet2);
+        arr.push(pet3);
+
+        //객체별로 메소드 추가
+        for(var i in arr) {
+            arr[i].bark = function() {
+                if(this.weight > 7)
+                    console.log(this.name + "이/가 감자를 물어왔습니다")
+                else
+                    console.log(this.name + "이/가 썩은 감자를 던졌습니다.")
+            };
+
+            //toString override
+            arr[i].toString = function() {
+                return "{name = " + this.name + ", breed = " + this.breed + 
+                        ", age =" + this.age + ", weight = " + this.weight + "}";
+            }
+        }
+
+        //객체별 bark메소드 호출
+        for(var i = 0; i < arr.length; i++) {
+            arr[i].bark();
+        }
+
+        //객체별 문자열 출력
+        for(var i in arr) {
+            console.log(i + " : " + arr[i]);
+        }
+
+        console.log(arr);
+    }
+    </script>
+
+    <h2>생성자함수</h2>
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+    /**
+     * new키워드와 함께 객체를 생성할 수 있는 함수
+     * 관례상 함수명은 대문자로 시작한다.
+     */ 
+    function test2(){
+        var pet1 = new Pet("구리구리", "푸들", 10, 4);
+        console.log(pet1);
+        pet1.bark();
+        console.log(pet1.toString());
+
+        var arr = [
+            new Pet("구리구리", "푸들", 10, 4),
+            new Pet("2", "2", 2, 2),
+            new Pet("3", "3", 3, 3)
+        ];
+
+        for(var i in arr)
+            // arr[i].bark();
+            console.log(arr[i]);
+
+        //생성자함수는 일반함수처럼 사용하지 않도록 유의해야한다.
+        //일반함수안에서 this는 window를 참조하므로, window속성으로 등록되어버린다.
+        //new 연산자 없이 만드는 것 등
+        // var p = Pet("사랑이", "코카스파니엘", 4, 13);
+        // console.log(p);
+
+    }
+
+    /**
+     * Pet 생성자함수
+     * 
+     * 생성자함수(new연산자로 호출된 경우) 안에서 this는 현재 객체를 참조한다.
+     * 
+     * javascript는 prototype기반의 객체모델을 제공한다.
+     * prototype객체가 바로 부모객체이다. 
+     * 객체별 공통된 코드는 prototype에서 관리하는 것이 메모리 효율적이다.
+     */ 
+    function Pet(name, breed, age, weight){
+        this.name = name;
+        this.breed = breed;
+        this.age = age;
+        this.weight = weight;
+
+        //prototype : Pet의 부모객체
+        //중복된 함수는 작성하고, Pet객체에서 참조하게 한다.
+        Pet.prototype.bark = function() {
+        if(this.weight > 7)
+                console.log(this.name + "이/가 감자를 물어왔습니다");
+        else
+                console.log(this.name + "이/가 썩은 감자를 던졌습니다.");
+        };
+
+        //toString override
+        Pet.prototype.toString = function() {
+            return "{name = " + this.name + ", breed = " + this.breed + 
+                    ", age =" + this.age + ", weight = " + this.weight + "}";
+        }
+    }
+    
+    </script>
+</body>
+</html>

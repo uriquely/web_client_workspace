@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    //브라우저의 Web Storage 지원여부
+    if(window.localStorage || window.sessionStorage)
+        console.log("Web Storage를 사용할 수 있습니다");
+    else
+        console.log("Web Storage를 사용할 수 없습니다. 브라우저를 업데이트하세요.")
+    </script>
+    <style>
+        #guestBook {
+        border: 1px solid #000;
+        border-collapse: collapse;
+        margin: 10px 0;
+        }
+    
+        #guestBook th, #guestBook td {
+        border: 1px solid #000;
+        padding: 5px;
+        }
+    </style>
+  
+</head>
+<body>
+    <h1>Web Storage</h1>
+    <ul>
+        <li>Local Storage - 만료기간 없이 영구저장</li>
+        <li>Session Storage - 브라우저별 세션단위로 저장. 세션 만료시 데이터 파기.</li>
+    </ul>
+
+    <h2>저장</h2>
+    <input type="text" id="key1" placeholder="key">
+    <input type="text" id="value1" placeholder="value">
+    <input type="button" value="저장" id="btn1">
+
+    <script>
+    $(btn1).click(function(){
+        var $key = $(key1);
+        var $value = $(value1);
+
+        //유효성검사
+        if($key.val() == '' || $value.val() == '') {
+            alert("key/value값을 정확히 입력하세요");
+            return; //조기리턴
+        }
+
+        //localStorage객체에 데이터 저장
+        // localStorage.setItem($key.val(), $value.val());
+        localStorage[$key.val()] = $value.val();
+
+        console.log(localStorage);
+
+        //초기화
+        $key.val('');
+        $value.val('');
+    });
+
+    </script>
+
+    <h2>값 읽어오기</h2>
+    <input type="text" id="key2" placeholder="key">
+    <input type="button" value="실행" id="btn2">
+    <script>
+    $(btn2).click(function(){
+    
+        var $key = $(key2);
+        // var value = localStorage.getItem($key.val());
+        var value = localStorage[$key.val()];
+
+        console.log(value);
+        if(value)
+            alert($key.val() + " : " + value);
+        else
+            alert($key.val() + "에 해당하는 값이 없습니다.");
+
+        //초기화
+        $key
+            .val('')
+            .focus();
+    });
+
+    </script>
+
+    <h2>삭제</h2>
+    <input type="text" id="key3" placeholder="key">
+    <input type="button" value="삭제" id="btn3">
+
+    <!-- 전체삭제 버튼, 위험하므로 잘 쓰이지 않는다. -->
+    <input type="button" value="전체삭제" onclick="localStorage.clear();">
+
+    <script>
+    $(btn3).click(function(){
+        var $key = $(key3);
+        // localStorage.removeItem($key.val()); //undefined 리턴, 삭제여부를 알 수 없다.
+        delete localStorage[$key.val()];
+        $key.select(); //재입력을 위해 블럭을 잡아둔 상태
+
+        //초기화
+        $key
+            .val('')
+            .focus();
+    })
+
+    /**
+     * 
+     *  Web Storage 저장이 되어있는 값은 모두 문자열이다.
+     * 
+        > var num1 = localStorage.getItem("num1");
+        undefined
+
+        > num1
+        "1234"
+
+        > typeof num1
+        "string"
+
+        > var num2 = localStorage.getItem("num2");
+        undefined
+
+        > num2
+        "5755.56"
+
+        > num1 + num2
+        "12345755.56"
+
+        Number()를 통해 숫자로 변환해야 올바른 연산 가능
+
+        > Number(num1) + Number(num2)
+        6989.56
+     */
+    </script>
+
+    <h2>객체관리</h2>
+    <input type="button" value="실행" id="btn4">
+
+    <script>
+    /**
+     * JSON Javascript Object Notation
+     * 자바스크립트객체를 호환성 좋은 문자열로 관리하는 형식(format)
+     * xml과 더불어 이종간의 데이터 교환언어로 사용되고 있다.
+     * 
+     * {}
+     * []
+     * 
+     *  숫자나 논리형은 상관없지만, 문자열 및 key값은 ""로 감싸주자
+     *  {"id" : "honggd", "age" : 30, "married" : true, "hobby" : [1, 2, 3]
+     *   "friend" : {}}
+     * [1, 2, 3, ["a", "b", "c"], {}, null]
+     * 
+     */
+    $(btn4).click(function(){
+        var obj = {
+            id : "honggd",
+            name : "홍길동",
+            age : 30,
+            married : true,
+            toString : function(){
+                return "id=" + this.id + ", name=" + this.name
+                    + ", age=" + this.age + ", married=" + this.married;
+            }
+        };
+
+        //저장
+        //JSON.stringify : json문자열로 변환
+
+        var jsonStr = JSON.stringify(obj);
+        console.log(jsonStr);
+        localStorage.setItem(obj.id, jsonStr);
+        // {"id":"honggd","name":"홍길동","age":30,"married":true}
+        // toString 함수는 누락되었으나, 데이터들은 잘 전달
+
+        // 다시 객체로 돌려놓기
+        jsonStr = localStorage.getItem(obj.id);
+        var other = JSON.parse(jsonStr);
+
+        console.log(other);
+        console.log(typeof other);
+    });
+    </script>
+
+    <h2>방명록관리</h2>
+    <form action="javascript:saveGuestBook();">
+        <table id="guestBookInput">
+            <tr>
+                <th><label for="userName">이름</label></th>
+                <td><input type="text" name="userName" id="userName"></td>
+            </tr>
+            <tr>
+                <th><label for="userMemo">내용</label></th>
+                <td><textarea name="userMemo" id="userMemo"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="저장">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+    function saveGuestBook(){
+        var guestBook = new GuestBook($(userName).val(), $(userMemo).val());
+        console.log(guestBook);
+
+        //기존데이터 가져오기. 존재하지 않을 때만 새 배열 생성
+        var arr = JSON.parse(localStorage.getItem("arr"));
+
+        //처음 추가할 때에는 arr이 null일테니 조건을 제시해준다.
+        if(arr == null) arr = [];
+
+        arr.push(guestBook);
+        console.log(arr);
+
+        //배열로 저장
+        var jsonStr = JSON.stringify(arr);
+        localStorage.setItem("arr", jsonStr);
+
+        //초기화
+        $(userName).val('').focus();
+        $(userMemo).val('');
+
+        //새로입력된 정보로 갱신
+        loadGuestBook();
+    }
+
+    //생성자함수
+    function GuestBook(name, memo){
+        this.name = name;
+        this.memo = memo;
+        this.time = new Date().getTime(); //unix second로 시간 관리
+    }
+
+    /**
+     * html DOM등록을 마치면(load), localStorage의 데이터를 읽어서 테이블로 출력한다.
+     */
+    //방문자 정보 화면 출력하기 : 온로드 함수 꼭 필요
+    $(function(){
+        loadGuestBook();
+    });
+
+    /**
+     * 화면 최초 로딩 시, 방문자 정보 새로 추가 시 호출되어
+     * 화면에 방명록 정보를 표시한다.
+     */
+    function loadGuestBook(){
+        var arr= JSON.parse(localStorage.getItem("arr"));
+        var $guestBook = $(guestBook); //테이블태그
+
+        //헤더 추가
+        $guestBook.html("<tr><th>No</th><th>이름</th><th>내용</th><th>방문일시</th></tr>");
+
+        //내용 추가
+        //최초로 가져올 때에는 arr이 null일테니 분기처리가 필요
+        if(arr == null){
+            $guestBook.append("<tr><td colspan='4'>방문자가 없습니다</td></tr>")
+        }
+        else{
+            arr.reverse();
+            //웹스토리지에서 가져온 arr을 순회하기 위해 each사용
+            $.each(arr, function(index, elem){
+                
+                //unix초가 들어가 있으니 date 객체로 바꾸어야 함
+                var date = new Date(elem.time);
+
+                var tr = "<tr>";
+                tr += "<td>" + (index + 1) + "</td>";
+                tr += "<td>" + elem.name + "</td>";
+                tr += "<td>" + elem.memo.replaceAll("\n", "<br>") + "</td>";
+                tr += "<td>" + displayTime(date) + "</td>";
+                tr += "</tr>";
+
+                //테이블에다 보내는 법
+                $guestBook.append(tr);
+            });
+        }
+    }
+
+    // 2021/01/28 11:50 형식으로 표현
+    function displayTime(date){
+        return date.getFullYear() + "/" + (date.getMonth() + 1) + "/"
+                + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+    }
+    </script>
+
+    <div class="wrapper">
+        <table id="guestBook"></table>
+    </div>
+
+
+</body>
+</html>

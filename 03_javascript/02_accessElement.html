@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 접근하기</title>
+</head>
+<body>
+    <h1>요소 접근하기</h1>
+    <!-- ul>li{테스트$}*5 -->
+
+    <ul>
+        <li class="odd">테스트1</li>
+        <li class="even">테스트2</li>
+        <li id="test3" class="odd">테스트3</li>
+        <li class="even">테스트4</li>
+        <li class="odd">테스트5</li>
+    </ul>
+
+    <input type="button" value="실행" onclick="test1()" style="margin: 10px;">
+
+    <!-- 02_accessElement.html:20 Uncaught ReferenceError: test1 is not defined
+    at HTMLInputElement.onclick (02_accessElement.html:20) -->
+
+    <script>
+    function test1() {
+        //문서가 브라우저에 의해 해석될 때, html tag는 자바스크립트 객체 모델로 저장된다.
+
+        //1. 아이디로 접근(문서 내 한 번 접근될 수 있는 식별자 역할)
+        var el = document.getElementById('test3');
+        console.log(el);
+        console.dir(el);
+        console.log(typeof el); //object
+
+        //2.태그명으로 접근
+        var arr = document.getElementsByTagName("li"); //li태그 객체들을 유사배열로 반환
+                    console.log(arr);
+                    console.log(typeof arr);
+
+        for(var i = 0; i < arr.length; i++) {
+            arr[i].innerHTML ="으라차차" + (i+1) //직접 값세팅(내용,스타일) 가능 -> 동적제어를 보여줌
+            console.log(arr[i].innerHTML); //태그 내부 HTML 을 반환
+        }
+
+        //3. 클래스명으로 접근
+        var evens = document.getElementsByClassName('even');
+        var odds = document.getElementsByClassName('odd');
+        console.log(evens);
+        console.log(odds);
+
+        for(var i = 0; i < evens.length; i++) {
+            evens[i].style.backgroundColor = 'gray';
+            evens[i].style.color = '#FFF';
+        }
+
+        for(var i = 0; i < odds.length; i++) {
+            odds[i].style.backgroundColor = 'gold';
+        }
+    }
+    </script>
+
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+            <ul style="list-style: none; line-height: 30px;">
+                <li>
+                    <input type="checkbox" name="hobby" id="music" value="음악감상">
+                    <label for="music">음악감상</label>
+                    <input type="checkbox" name="hobby" id="movie" value="영화감상">
+                    <label for="movie">영화감상</label>
+                    <input type="checkbox" name="hobby" id="book" value="독서">
+                    <label for="book">독서</label>
+                    <input type="checkbox" name="hobby" id="drink" value="음주">
+                    <label for="drink">음주</label>
+                </li>
+                <li>
+                    <input type="button" value="확인" onclick="test2();">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <script>
+    
+    function test2() {
+        var hobbyArr = document.getElementsByName('hobby');
+        console.log(hobbyArr);
+        console.log(typeof hobbyArr);
+
+        /*
+
+        자바스크립트에서의 변수는 function foo(a){} 에서 'a'에 무엇이 들어올 지 모른다.
+        이런 애매한 부분을 타파하기 위해서 MS에서 타입스크립트를 만듬
+
+        function foo(a:number) 이런식으로 작성을 하는데,
+        이 덕분에 어떤 값인지를 확실하게 줄 수 있는 장점을 가진다.
+
+        언제나 코드는 유하게 허용을 해 주더라도 엄격하게 적는 버릇을 들일 것.
+
+        */
+        var result = '';
+        //체크된 요소들만 값 출력
+        for(var i = 0; i < hobbyArr.length; i++) {
+            var chk = hobbyArr[i];
+            if(chk.checked) {
+                console.log(chk.value);
+                // result = result + chk.value + ' ';
+                result += chk.value + ' ';
+            }
+        }
+        alert(result);
+    }
+    </script>
+
+    <hr>
+    <p>@실습문제 : input#userName의 값을 div#area1에 출력하세요.</p>
+
+    <form action="">
+        <label for="userName">이름 입력 : </label>
+        <input type="text" id="userName" name="userName">
+
+        <input type="button" value="사용자 입력값 확인" onclick="test4();">
+    </form>
+    <p></p>
+
+    <div 
+        id="area1" 
+        style="width: 500px; 
+        height: 300px; 
+        background-color: blanchedalmond; 
+        border: 1px solid black"></div>
+    
+    <script>
+        function test4() {
+            // var e1 = document.getElementsByName("userName")[0];
+            // var e1 = document.getElementById("userName");
+            // console.log(e1);
+            //비표준 id값을 변수로 선언하지 않고 사용 가능.
+            var userName = document.getElementById("userName");
+            console.log(userName.value);
+
+            area1.innerHTML = userName.value;
+
+            //초기화
+            userName.value = '';
+            //포커스 처리
+            userName.focus();
+            
+        }
+        </script>
+
+    <p>@실습문제 : input#point의 값이 변경될때마다 span#pointCheck에 출력하세요.</p>
+
+    <form action="">
+        <label for="point">점수 입력 : </label>
+        <input type="range" name="point" id="point" min="0" max="100" oninput="test5();">
+        <span id="pointCheck">0</span>
+    </form>
+    <script>
+
+    function test5() {
+        var pointValue = document.getElementById("point");
+        document.getElementById("pointCheck").innerHTML = pointValue.value;
+        }
+    </script>
+
+    <h2>className 제어하기</h2>
+    <table id="tbl">
+        <tr>
+            <th colspan="3">수강신청</th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <!-- 인라인속성에 사용된 this는 태그객체 자신을 가리킨다. -->
+                <!-- value 기본값은 on, 1 -->
+                <input type="checkbox" id="chkAll" onchange="checkAllOrNone(this);">
+                <label for="chkAll">모두선택/해제</label>
+            </td>
+        </tr>
+        <tr>
+            <!-- (td>input:checkbox[name=subject]+label)*3 -->
+            <!-- 메소드내부에 this를 주어서 어떤 걸 선택했는 지 알 수 있도록 -->
+            <!-- 클래스네임은 다 문자열로 처리 -->
+            <td class="font"><input type="checkbox" name="subject" id="kor" onchange="checkSubject(this);"><label for="kor">국어</label></td>
+            <td class="font"><input type="checkbox" name="subject" id="eng" onchange="checkSubject(this);"><label for="eng">영어</label></td>
+            <td class="font"><input type="checkbox" name="subject" id="math" onchange="checkSubject(this);"><label for="math">수학</label></td>
+        </tr>
+    </table>
+
+    <style>
+    table#tbl {
+        border: 1px solid #000;
+        border-collapse: collapse;
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    table#tbl th, table#tbl td {
+        border: 1px solid #000;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .subject-checked {
+        background-color: gold;
+        color: #FFF;
+    }
+
+    /* 이렇게 폰트를 부여해주면 체크박스를 해제할 때 글자가 풀려버림 */
+    .font {
+        font-family: "궁서체";
+    }
+    </style>
+
+    <script>
+
+    function checkSubject(subject) {
+
+        //부모td에 클래스값 부여하기
+        console.log(subject);
+
+        //부모td 가져오기
+        var parentTd = subject.parentElement;
+        console.log(parentTd);
+
+        //체크여부에 따라 클래스값 부여/회수
+        if(subject.checked)
+            parentTd.className = 'subject-checked font';
+        else
+            parentTd.className = 'font';
+
+        //개별체크박스 전체선택여부확인후 #checkAll에 반영하기
+        var subjects = document.getElementsByName("subject");
+        var cnt = 0;
+        for(var i = 0; i < subjects.length; i++) {
+            if(subjects[i].checked) //만약에  subjects[i]가 체크된 상태라면?
+                cnt++; //cnt++를 해주자
+        }
+        var chkAll = document.getElementById("chkAll");
+        chkAll.checked = (cnt == subjects.length);
+    }
+    
+    function checkAllOrNone(chkAll) {
+        // var chkAll = document.getElementById("chkAll");
+        var subjects = document.getElementsByName("subject");
+
+        console.log(chkAll);
+
+        // subjects[0].checked = true; //체크를 하면 true가 되도록
+        // subjects[1].checked = true;
+        // subjects[2].checked = true;
+
+        for(var i = 0; i < subjects.length; i++) {
+            //1.개별체크박스제어
+            subjects[i].checked = chkAll.checked;
+            //2.체크박스별 부모 td 클래스값 제어
+            subjects[i].parentElement.className = chkAll.checked ? 'subject-checked font' : 'font';
+        }
+
+        /*과제...classList를 공부해서 적용*/
+    }
+    </script>
+
+    <p>@실습문제 : classList속성을 이용해서 코드를 개선하세요.</p>
+        
+    <h2>classList</h2>
+    <p>tag element의 className속성을 제어할 수 있는 함수를 가진 속성</p>
+    <p>클래스네임은 문자열로 처리</p>
+
+    <ul>
+        <li><input type="button" value="add" onclick="add();">add</li>
+        <li><input type="button" value="remove" onclick="remove();">remove</li>
+        <li><input type="button" value="toggle" onclick="toggle();">toggle</li>
+        <li><input type="button" value="contains1" onclick="contains1();">contains1</li>
+    </ul>
+
+    <div id="test" class="border font">안녕하세요.</div>
+
+    <style>
+    .border {
+        height: 100px;
+        border: 1px solid #000;
+    }
+
+    .bg-color {
+        background-color: tomato;
+        color: #FFF;
+    }
+    </style>
+    <script>
+    function add() {
+        // add를 클릭하면 id="test"
+        var test = document.getElementById("test");
+        test.classList.add("bg-color");
+        console.dir(test);
+    }
+
+    function remove() {
+        var test = document.getElementById("test");
+        test.classList.remove("bg-color");
+    }
+
+    function toggle() {
+        var test = document.getElementById("test");
+        test.classList.toggle("bg-color");
+    }
+
+    function contains1() {
+        var test = document.getElementById("test");
+        alert(test.classList.contains("bg-color"));
+    }
+    </script>
+
+    <h2>querySeletor | querySelectorAll</h2>
+
+    <input type="button" value="querySeletor" onclick="test6();">
+    <input type="button" value="querySelectorAll;" onclick="test7();">
+    <!-- (p.foo>lorem)*3 -->
+    <p class="foo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore obcaecati tempora ut saepe laborum suscipit repudiandae repellat dolorum tenetur laboriosam recusandae alias neque veniam asperiores maiores debitis a, nam tempore?</p>
+    <p class="foo" id="myp">Voluptas cumque delectus vero qui laborum ducimus doloremque sint esse voluptates minima. Quas sequi temporibus magnam numquam placeat eligendi quo accusamus aspernatur fuga, voluptatum quisquam suscipit, voluptas corrupti, aut laboriosam.</p>
+    <p class="foo">Eum eius commodi incidunt! Accusamus voluptatum dolorem quo fugiat sit! Nulla ratione dolores quam esse beatae fugiat, reprehenderit ab, atque nobis eaque a quidem vel velit non nihil nam distinctio?</p>
+
+    <script>
+    function test6() {
+        //css선택자를 통해 단 하나의 요소를 리턴
+        // var p = document.querySelector("#myp");
+
+        // ***********************************************************************
+        // .foo는 여러 개의 요소를 가지고 있지만 첫 번째 하나의 요소만을 리턴하므로 주의
+        // ***********************************************************************
+        var p = document.querySelector(".foo");
+        console.log(p);
+        p.style.color = "hotpink";
+    }
+
+    function test7() {
+        var pArr = document.querySelectorAll(".foo");
+        console.log(pArr);
+
+        // 내부 요소에는 반복문을 통하여 접근한다.
+        for(var i = 0; i < pArr.length; i++) {
+            pArr[i].style.backgroundColor = "gold";
+        }
+    }
+    </script>
+
+
+</body>
+</html>

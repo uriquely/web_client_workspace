@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬</title>
+</head>
+<body>
+    <h1>정렬</h1>
+    <ul>
+        <li>inline 요소 정렬하기</li>
+            <ul>
+                <li>부모 block요소에서 text-align속성을 이용해 자식 inline요소를 정렬한다.</li>
+                <li>img, span등의 inline요소</li>
+                <li>h1, p태그의 내부 text</li>
+            </ul>
+        <li>block 요소 정렬하기 : 태그 자신에게 너비와 margin값을 활용한다. 
+            <br>margin: 0 auto;
+            <br>margin이란? 다른 요소와의 거리를 뜻한다
+        </li>
+    </ul><br>
+
+
+    <div class="wrapper">
+        <img src="sample/image/flower1.PNG" alt="숲사진1">
+        <br>
+
+        <span>안녕하세요.</span>
+        <span>Hello World</span>
+        <h1>봄</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, magni! Consequuntur quisquam qui expedita illum reiciendis molestias ipsa impedit. Minus aliquid consequatur esse velit alias unde iste soluta sint dignissimos.</p>
+    
+        <div class="inner">벚꽃</div>
+    </div>
+    <style>
+    .wrapper img {
+        width: 150px;
+    }
+
+    /* 우측 정렬을 하고 싶다면? 부모 요소에 text-align */
+    .wrapper {
+        border: 2px solid gainsboro;
+        text-align: center;
+    }
+
+    .wrapper .inner {
+        width: 100px;
+        height: 100px;
+        background-color: lavenderblush;
+        /* margin: 0 auto; */
+        margin-left: auto; /* 화면 전체에서 자신의 너비를 뺀 수치 */
+    }
+    </style>
+</body>
+</html>

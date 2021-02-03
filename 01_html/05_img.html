@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Image</h1>
+
+    <h2>감자의 꽃말</h2>
+    <div>당신을 따르겠어요</div>
+    <!-- ./ 현재디렉토리(생략가능) ../부모디렉토리 -->
+    <img src="./sample/image/potato.jpg" alt="대체문자:파일을 찾을 수 없는 경우 표시될 문자">
+    <br>
+    <img src="./sample/image/aaa.jpg" alt="파일을 찾을 수 없습니다.">
+    <br><br>
+    
+    <!-- 절대주소로 이미지 참조 -->
+    <!-- C:W(\), /로 시작하는 주소 웹상의 이미지주소 -->
+    <!-- 서버환경의 루트디렉토리(01_html)부터 대상파일을 찾는다. -->
+    <img src="/sample/image/city1.PNG" alt="파일 없음">
+    <br>
+    <h1>감자 홍보대사</h1>
+    <img src="https://image.edaily.co.kr/images/Photo/files/NP/S/2020/03/PS20032000388.jpg" alt="">
+    
+    <!-- 
+        이미지절대크기 px 
+        이미지상대크기 % - 화면너비대비 사이즈결정
+    -->
+    <br>
+    <br>
+    <img src="/sample/image/tiger.jpg" style="width:150px;" alt="">
+    <img src="/sample/image/tiger.jpg" style="width:30%;" alt="">
+
+    <hr>
+    <!-- 이미지 링크 만들기 -->
+    <a href="https://w3schools.com">
+        <img src="/sample/image/city1.PNG" alt="파일 없음">
+    </a>
+
+    <hr>
+    <!-- 이미지 구역별로 링크 각각 달기 -->
+    <img src="sample/image/flower2.PNG" alt="" usemap="#mymap">
+    <map name="mymap">
+        <area shape="rect" coords="0,0,299,429" href="https://naver.com" alt="네이버 이동하기">
+        <area shape="rect" coords="299,0,598,429" href="https://google.com" alt="네이버 이동하기">
+    </map>
+
+    <hr>
+    <!-- 이미지 정렬하기 -->
+    <!-- 요소 그룹핑 목적, DIVISION의 약자로 '경계를 분할하다' 또는 '영역을 나누다'-->
+    <div>
+        <img src="sample/image/flower3.PNG" alt="" style="width: 150px; float: left;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem inventore veniam sunt ipsa, nihil ut a vitae recusandae rerum voluptatum odio tenetur, sapiente laboriosam reprehenderit, facilis nam unde itaque rem.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit vel error, molestias fugiat amet pariatur labore vitae maiores voluptatum itaque, voluptates accusamus maxime. Tempore quas nesciunt, labore neque minus impedit!</p>
+    </div>
+
+    <div>
+        <img src="sample/image/flower1.PNG" alt="" style="width: 150px; float: right;">
+        <!-- 이전의 align 대신에 style의 float를 사용하는 게 좋다. -->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem inventore veniam sunt ipsa, nihil ut a vitae recusandae rerum voluptatum odio tenetur, sapiente laboriosam reprehenderit, facilis nam unde itaque rem.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit vel error, molestias fugiat amet pariatur labore vitae maiores voluptatum itaque, voluptates accusamus maxime. Tempore quas nesciunt, labore neque minus impedit!</p>
+    </div>
+
+    <div>
+        <img src="sample/image/flower3.PNG" alt="" style="width: 150px; float: left;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem inventore veniam sunt ipsa, nihil ut a vitae recusandae rerum voluptatum odio tenetur, sapiente laboriosam reprehenderit, facilis nam unde itaque rem.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit vel error, molestias fugiat amet pariatur labore vitae maiores voluptatum itaque, voluptates accusamus maxime. Tempore quas nesciunt, labore neque minus impedit!</p>
+        <br style="clear: both;"><!-- 플롯 속성 무효화 -->
+        <img src="sample/image/flower1.PNG" alt="" style="width: 150px; float: right;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem inventore veniam sunt ipsa, nihil ut a vitae recusandae rerum voluptatum odio tenetur, sapiente laboriosam reprehenderit, facilis nam unde itaque rem.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit vel error, molestias fugiat amet pariatur labore vitae maiores voluptatum itaque, voluptates accusamus maxime. Tempore quas nesciunt, labore neque minus impedit!</p>
+    </div>
+
+
+</body>
+</html>

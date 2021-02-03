@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <h1>BOM</h1>
+    <p>Browser Object Model</p>
+
+    <h2>navigator</h2>
+    <input type="button" value="실행" onclick="test1();">
+
+    <script>
+    /**
+     * navigator : browser에 대한 정보, os에 대한 정보를 가지고 있는 객체
+     * 
+     * 인터넷 바다의 항해자는 브라우저
+     * 
+     *      navigator.userAgent : browser를 식별할 수 있는 코드값
+     */
+    function test1() {
+        console.log(navigator);
+    }
+    </script>
+
+    <!--  -->
+
+    <h2>location</h2>
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+    /**
+     * location 브라우저의 주소창관련 정보
+     */
+    function test2() {
+        console.log(location);
+        //페이지 이동(현재 페이지에 여는 것)
+        //새 탭에다가 열고 싶으면 open을 사용하면 되겠지?
+        location.href = "https://naver.com";
+
+        //새로고침
+        location.reload();
+    }
+    </script>
+
+    <!--  -->
+
+    <h2>history</h2>
+    <input type="button" value="실행" onclick="test3();">
+    <input type="button" value="back" onclick="history.back();">
+    <input type="button" value="forward" onclick="history.forward();">
+
+    <script>
+
+    /**
+     * history 브라우저 방문기록을 관리
+     */
+    function test3() {
+        console.log(history);
+    }
+    </script>
+
+    <h2>screen</h2>
+    <input type="button" value="실행" onclick="test4();">
+    <script>
+    /**
+     * screen
+     * 
+     * 브라우저 뷰포트가 아니라 현재 이용중인 모니터(하드웨어) 정보
+     */
+    function test4() {
+        console.log(screen);
+
+        // var width = 300;
+        // var height = 300;
+        // var left = (screen.width - width) / 2;
+        // var top = (screen.availHeight - height) / 2;
+        
+        var width = 300;
+        var height = 300;
+        var left = (screen.availWidth  - width) / 2;
+        var top = (screen.availHeight - height) / 2;
+
+        // open(
+        //     "http://naver.com", 
+        //     "popup", 
+        //     "width=" + width + ", height=" + height +  
+        //     ", top=" + top + ", left=" + left
+        //     );
+        
+        
+        open(
+        "http://naver.com", 
+        "popup", 
+        "width=" + width + ", height=" + height +  
+        ", top=" + top + ", left=" + left
+        );
+
+    }
+    </script>
+
+</body>
+</html>

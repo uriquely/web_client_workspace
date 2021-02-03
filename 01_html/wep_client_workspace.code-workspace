@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"name": "01_html",
+			"path": "."
+		},
+		{
+			"name": "02_css",
+			"path": "..\\02_css"
+		},
+		{
+			"name": "03_javascript",
+			"path": "..\\03_javascript"
+		},
+		{
+			"name": "04_jquery",
+			"path": "..\\04_jquery"
+		},
+		{
+			"name": "05_html5api",
+			"path": "..\\05_html5api"
+		},
+		{
+			"name": "yuri",
+			"path": "..\\yuri"
+		},
+		{
+			"path": "..\\210126_HTML_Assignment"
+		},
+		{
+			"path": "..\\210125_HTML_Assignment"
+		},
+		{
+			"path": "..\\210122_HTML_Assignment"
+		},
+		{
+			"path": "..\\exam"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "yuri"
+	}
+}

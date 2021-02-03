@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>DOM</h1>
+    <p>Document Object Model</p>
+
+    <h2>요소 생성</h2>
+    <input type="button" value="document.createElement" onclick="test1();">
+    <input type="button" value="innerHTML" onclick="test2();">
+    <div class="wrap"></div>
+    <script>
+
+    function test2() {
+        var wrap = document.querySelector(".wrap");
+        wrap.innerHTML = "<h3>안녕하세요</h3>";
+    }
+    /**
+     * document객체의 함수를 이용해 요소를 동적으로 생성하기
+     * 
+     */
+    function test1() {
+
+        var h3 = document.createElement("h3"); //<h3></h3>
+        var txt = document.createTextNode("안녕하세요");
+
+        h3.appendChild(txt); //<h3>안녕하세요</h3>
+
+        var wrap = document.querySelector(".wrap");
+        wrap.appendChild(h3);
+    }
+
+    </script>
+
+    <h2>요소 traversing</h2>
+    <input type="button" value="실행" onclick="test3();">
+
+    <!-- div#container>p{테스트$}*5 -->
+    <div id="container">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p id="p3">테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+    </div>
+    
+    <script>
+    /**
+     * 자식조회 childeNodes | firstChild | lastChild
+     *          children | firstElementChild | lastElementChild
+     * 부모조회 parentNode
+     * 형제조회 nextSibling | previousSibling
+     *          nextElementSibling | previousElementSibling
+     */ 
+    function test3(){
+    var start = document.querySelector("#p3");
+    // var end = start.previousSibling.previousSibling.parentNode.childNodes;
+    var end = start.previousElementSibling.parentNode.children[2];
+    console.log(end);
+    end.style.color = "hotpink";
+
+    }
+    </script>
+</body>
+</html>

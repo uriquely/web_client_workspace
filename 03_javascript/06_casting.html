@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casting</title>
+</head>
+<body>
+    <h1>형변환</h1>
+    <h2>문자열, 숫자간 산술연산</h2>
+    <input type="button" value="자동형변환" onclick="test1();">
+    <input type="button" value="명시적형변환" onclick="test2();">
+    <script>
+    
+    /*
+    * [명시적 형변환]
+    *
+    * Number() 정수/실수로 형변환. 숫자 외 문자가 있다면 NaN을 리턴
+    * parseInt() 정수로 형변환. 좌측부터 변환 가능한 곳까지 변환
+    * parseFloat() 실수로 형변환. 좌측부터 변환 가능한 곳까지 변환
+    */
+    function test1() {
+        console.log('7' + 7); //77
+        console.log(typeof('7' + 7)); //string
+
+        console.log('7' - 7); //0 -> '7'이 7로 형변환
+        console.log(typeof('7' - 7)); //number
+
+        console.log('7' * 7); //49
+        console.log(typeof('7' * 7)); //number
+
+        console.log('7' / 7); //1
+        console.log(typeof('7' / 7)); //number
+
+        console.log('7' % 7); //0
+        console.log(typeof('7' % 7)); //number
+
+        console.log('7' == 7); //true
+        console.log(typeof('7' == 7)); //boolean
+
+        console.log('abc' % 7); //NaN -> Not a Number 오류가 나지 않는다.
+        console.log(typeof('abc' % 7)); //number
+    }
+
+    /*
+    */
+    function test2() {
+        var money = '1000.50원';
+        var money2 = '$1000.50원'; // 왼쪽부터 형변환이 되므로 전부 NaN
+
+        money2 = money2.replace('$', ''); //이렇게 $를 제거하는 작업 필요.
+        console.log(money2);
+
+        //*replace*
+        //정규표현식을 통해 숫자 아닌 문자를 먼저 제거
+
+        console.log(Number(money)); //NaN
+        console.log(parseInt(money)); //1000
+        console.log(parseFloat(money)); //1000.5
+    }
+    </script>
+
+    <p>@실습문제 : 사용자에게 두 숫자를 입력받고, 결과버튼을 눌렀을 때 두 수의 합을 출력하세요.</p>
+
+    <ul style="list-style: none;">
+        <li><input type="number" name="num1" id="num1"></li>
+        <li><input type="number" name="num2" id="num2"></li>
+        <li><input type="button" value="결과" onclick="test3();"></li> 
+        <li><div id="result" style="width: 150px; height: 50px; background-color: blanchedalmond;"></li> 
+    </ul>
+    
+
+    </div>
+
+    <script>
+        /*
+        * input태그의 value는 type속성 상관없이 무조건 string이다.
+        */
+    function test3() {
+        var n1 = Number(num1.value);
+        var n2 = Number(num2.value);
+        result.innerText = n1 + n2;
+        
+        console.log(result);
+    }
+    </script>
+
+    <h2>NaN | Infinity</h2>
+    <input type="button" value="실행" onclick="test4();">
+
+    <script>
+    /*
+    * NaN : Not a Number 숫자가 아니다.
+    * Infinity 무한대 자바스크립트에서는 수를 0으로 나눠도 오류가 발생하지 않는다.
+    */
+    function test4() {
+        console.log(10 / 0); //Infinity : 오류가 나지 않는다.
+        console.log(typeof(10 / 0)); //number
+
+        //isNaN() : NaN여부확인 NaN이면 true, NaN이 아니면 false;
+        
+        var num = prompt("수를 입력하세요."); //string
+
+        //여기서 isNaN이 string을 숫자로 임의변환 후 확인됨
+        if(isNaN(num)) {
+            alert("숫자가 아닙니다.");
+        }
+        else {
+            alert("숫자입니다.");
+        }
+    }
+    </script>
+
+    <h2>논리형으로 자동형변환</h2>
+    <input type="button" value="실행" onclick="test5();">
+
+    <script>
+    
+    /*
+    * 값이 있는 것은 true로 자동형변환
+    * 값이 없는 것은 false로 자동형변환
+    */
+    function test5() {
+        
+        //1, -1, "안녕" 등은 값이 있어 true로 변환
+        //0, "", undefined, NaN, null, document.getElementById("num1213") 은 값이 없어 false로 반환
+
+        // if(undefined) {
+        //     console.log('참');
+        // }
+        // else {
+        //     console.log('거짓');
+        // }
+
+        // //사용자입력값 체크
+        // var s = prompt("아무말~"); //확인("아무말", ""), 취소(null)
+
+        // if(s) {
+        //     console.log(s); //"아무말"
+        // }
+        // else {
+        //     console.log("아무말도 하지 않았습니다"); //"", null
+        // }
+
+        //요소가 존재하는지 체크
+        var elem = document.querySelector("#num1"); //1또는 0개 요소 리턴
+        var elem = document.querySelectorAll("inputtttt"); //복수개의 요소(껍데기)일 때에는 개수를 체크하자
+        if(elem) {
+
+            //if(elem.length)를 통하여 복수개의 요소 길이를 체크하는 방법
+            //요소가 존재하는 경우
+            console.log(elem);
+        }
+        else {
+            //요소가 존재하지 않는 경우
+            console.log("요소가 존재하지 않습니다.");
+        }
+    }
+    </script>
+</body>
+</html>

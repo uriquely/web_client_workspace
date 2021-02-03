@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link</title>
+</head>
+<body>
+    <h1>Link</h1>
+    <p>a태그의 href속성에 이동할 주소를 작성. href는 hypertext reference를 의미.</p>
+
+    <ul>
+        <!-- 새창, 현재창에서 이동 속성 target-->
+        <li><a href="http://naver.com" target="_self">네이버이동(현재페이지)</a></li>
+        <li><a href="http://naver.com" target="_blank">네이버이동(새페이지)</a></li>
+    </ul>
+
+    <!-- 페이지 안의 페이지 -->
+    <iframe src="index.html" frameborder="1" width="500px" height="400px"></iframe>
+
+    <!-- 한 페이지 내에서 점프하는 북마크(앵커)만들기 -->
+    <ul id="menu">
+        <li><a href="#content1">본문1 직접 쓴 것</a></li>
+        <!-- (li>a[href=#content$]{본문$})*5 -->
+        <li><a href="#content1">본문1</a></li>
+        <li><a href="#content2">본문2</a></li>
+        <li><a href="#content3">본문3</a></li>
+        <li><a href="#content4">본문4</a></li>
+        <li><a href="#content5">본문5</a></li>
+    </ul>
+
+    <!-- id속성은 페이지 내에서 태그를 구분하는 고유 식별 속성 -->
+
+    <!-- (h2#content${본문$}) -->
+    <!-- (h2#content${본문$}+(p>lorem)*5)*5 -->
+
+    <h2 id="content1">본문1</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, quisquam facere animi consectetur dolor fuga quam in explicabo necessitatibus voluptas nostrum rerum modi aliquid unde excepturi, ullam odio, ex beatae.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet porro voluptate, est officia, rerum ea commodi doloribus natus, doloremque itaque consectetur incidunt dolorum error sint reprehenderit quaerat deleniti explicabo dolor.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi iure enim cumque, porro nihil possimus sunt aspernatur consequatur doloremque suscipit quibusdam, explicabo, delectus nisi tempore maxime doloribus omnis voluptatum?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sapiente cupiditate at, dolore in molestiae reprehenderit tempore quaerat temporibus quae, possimus distinctio beatae dolorum veniam ipsa. Inventore fugit vitae repudiandae.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur voluptatibus et, quae delectus nam molestias repellendus sit eligendi consequuntur sequi exercitationem harum dignissimos voluptatum velit doloremque incidunt maiores qui rem.</p>
+    <h2 id="content2">본문2</h2>
+    <p>Eveniet molestias, nulla voluptatem ipsum eligendi vitae reprehenderit natus alias repellendus debitis, dicta, tenetur enim porro sint nesciunt? Aspernatur exercitationem hic atque repudiandae voluptates odio placeat quia in error culpa!</p>
+    <p>Vel ex eligendi, maxime, tempore laudantium quae expedita veritatis magnam cupiditate fuga voluptates pariatur possimus cum officiis? Hic, provident doloremque. Dolor odio pariatur ipsa nesciunt reiciendis assumenda, illo perspiciatis porro?</p>
+    <p>Ad sapiente iusto cum quos eveniet voluptatem nam nesciunt officia. Odit, vel. Minus iste fuga qui nemo unde earum animi quae, obcaecati quos dolore suscipit esse repellat quaerat pariatur illum.</p>
+    <p>Nihil commodi doloremque iste perferendis saepe id soluta quae dignissimos nostrum molestias dolorum nemo exercitationem, nesciunt ducimus debitis aliquid aspernatur! Animi minus dolorum suscipit quis, ea blanditiis officiis! Impedit, veritatis!</p>
+    <p>Numquam est incidunt amet corrupti tempore repellat? Soluta sequi suscipit recusandae consequatur, quod, libero quia consequuntur laudantium doloremque ut consectetur commodi perferendis inventore enim odit cupiditate sunt sed nulla unde?</p>
+    <h2 id="content3">본문3</h2>
+    <p>Doloribus molestias labore, ducimus ex distinctio temporibus impedit. In eveniet nihil obcaecati cum pariatur dolores praesentium, esse nisi deleniti similique facilis! Soluta, rem inventore a aliquid corporis voluptatem. Fugiat, molestias?</p>
+    <p>Pariatur sequi laborum esse doloribus perferendis vero distinctio blanditiis nam reiciendis veritatis vitae sunt mollitia fugiat excepturi omnis nemo saepe est architecto, consequuntur quo, labore incidunt placeat voluptate. Illum, similique.</p>
+    <p>Amet, ducimus quo? Neque qui itaque repudiandae voluptatem impedit facilis debitis recusandae iure exercitationem, necessitatibus voluptas ratione numquam distinctio velit quasi doloremque quod ut hic sint dolore. Minima, amet ducimus.</p>
+    <p>Quidem minus facilis quibusdam et dicta, voluptatibus maxime ex maiores aspernatur harum pariatur, error quod officiis natus omnis magni rem perferendis aperiam fuga quas ducimus sed dolor! Officia, non quo.</p>
+    <p>Tempora atque earum ad sunt voluptates debitis numquam, facere explicabo unde velit quaerat distinctio id nobis fugiat veritatis quis cum magni impedit quasi voluptatum laborum itaque dolores officia! Nemo, reiciendis.</p>
+    <h2 id="content4">본문4</h2>
+    <p>Suscipit aliquam tempore consectetur, ut voluptas tenetur, exercitationem qui illo modi amet harum officia itaque cumque quis labore beatae voluptatum quam libero minus. Repellat mollitia eius explicabo accusamus voluptas maiores!</p>
+    <p>Expedita odio ex impedit sunt explicabo officia dolore id voluptatum aperiam numquam alias quod maxime animi molestias autem quis porro velit beatae ipsum, dolorum ratione consequatur. Fugiat velit minus ab?</p>
+    <p>Quae maiores magni nemo vero quibusdam incidunt deserunt enim architecto iure, delectus laborum quo fugit praesentium perferendis facilis optio adipisci veniam aut tempore tenetur esse! Excepturi, culpa? Aliquam, debitis ipsum!</p>
+    <p>Sed quas temporibus est sit repellat nobis voluptates accusantium dignissimos labore facere obcaecati omnis eius vitae excepturi magni, quo dolorum debitis blanditiis exercitationem expedita commodi praesentium. A sed perferendis itaque!</p>
+    <p>Asperiores reiciendis consequuntur veritatis cumque animi voluptas laborum voluptatum sapiente dicta facilis mollitia nobis id modi, incidunt fugit magni impedit eligendi? Sapiente aliquid delectus non quis nostrum exercitationem cumque odit.</p>
+    <h2 id="content5">본문5</h2>
+    <p>Non itaque enim tenetur nemo voluptatum quia, tempora, ut eos aut sequi cupiditate corporis consequatur nam velit a ipsa nesciunt neque similique. Nobis, corrupti iure rem possimus velit nisi molestias.</p>
+    <p>Blanditiis dolore et illum veritatis nihil ad aperiam vero, atque inventore expedita aliquid laborum deleniti unde corporis sed vitae maiores esse accusantium nobis mollitia temporibus autem tenetur culpa. Tenetur, odit.</p>
+    <p>Similique quisquam ipsum aperiam dolorem quaerat illo ipsam ab libero est, nesciunt rem debitis aut nobis quis quasi consequuntur ducimus quod. Ad quisquam sit voluptatem officia minus, ipsum hic laudantium.</p>
+    <p>Ullam impedit veritatis animi itaque omnis non praesentium qui soluta natus neque. Saepe, inventore excepturi? Debitis, nam quia! Id, cum. Distinctio soluta quibusdam iusto corrupti recusandae dolore cumque quisquam harum.</p>
+    <p>Ducimus eligendi, incidunt quos fuga a similique debitis repellat odit dolores sed autem cupiditate deserunt ipsum id obcaecati harum, voluptas non sit? Quas saepe molestias omnis accusantium tenetur iste delectus?</p>
+
+    <hr>
+    <ul>
+        <li><a href="#menu">메뉴이동</a></li>
+        <li><a href="#top">맨위로</a></li>
+    </ul>
+</body>
+</html>

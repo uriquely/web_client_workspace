@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <h1>배열</h1>
+    <h2>배열 생성</h2>
+    
+    <input type="button" value="실행" onclick="test1();">
+    
+    <script>
+    /**
+     * 타입지정이 없고, 크기도 가변형이므로, 자바의 ArrayList<Object>와 비슷하다.
+     */ 
+    function test1(){
+        var arr1 = [1,2,3];//초기화
+        var arr2 = new Array(1,2,3);
+
+        // console.log(arr2);
+        // console.log(arr1[0]);
+        // console.log(arr1[1]);
+        // console.log(arr1[2]);
+
+        //요소추가
+        arr1[3] = 100;
+
+        //존재하지 않는 인덱스 참조
+        console.log(arr1[4]); //undefined
+
+        // for(var i = 0; i < arr1.length; i++) {
+        //     console.log(arr1[i]);
+        // }
+
+        //for..in문
+        //배열을 순회하는 경우, 변수에는 index값이 담긴다.
+        for(var i in arr1) {
+            // console.log(i); -> 0,1,2
+            console.log(arr1[i]);
+        }
+
+        var arr3 = [1, 2, 3, ['a', 'b', 'c']];
+
+        console.log(arr3[3][1]);
+
+        //해당속성 존재 여부
+        for(var i in arr3) {
+            if(!arr3[i].length) {
+                console.log(arr3[i]);
+            }
+            else {
+                for(var j in arr3[i]) {
+                    console.log(arr3[i][j]);
+                }
+            }
+        }
+
+        for(var i=0; i<arr3.length; i++){
+                if(isNaN(arr3[i].length)) {
+                    console.log(arr3[i]);
+                }
+                else{
+                    for(var j=0; j<arr3[i].length; j++) {
+                        console.log(arr3[i][j]);
+                    }
+                }    
+        }
+        
+    }
+    </script>
+
+    </script>
+
+    <h2>일반배열 | 유사배열</h2>
+    <input type="button" value="실행" onclick="test2();">
+
+    <script>
+    /**
+    * 일반배열 : Array를 상속한 배열객체
+    * 유사배열 : Array를 상속하지 않은 배열객체. index, length속성외의 Array메소드 사용불가
+    *           for..in문 사용불가
+    */
+    function test2(){
+        var arr1 = ['a', 'b', 'c'];
+
+        // 유사배열을 리턴
+        var arr2 = document.getElementsByTagName("input");
+
+        console.log(arr1);
+        console.log(arr2);
+
+        //Array의 메소드 join()
+        console.log(arr1.join()); //하나의 문자열로 만들어주는 join
+        console.log(arr2.join()); //사용불가
+
+    }   
+    </script>
+
+    <h2>Array 메소드</h2>
+    <input type="button" value="indexOf" onclick="test3();">
+    <input type="button" value="concat" onclick="test4();">
+    <input type="button" value="join" onclick="test5();">
+    <input type="button" value="reverse" onclick="test6();">
+    <input type="button" value="sort" onclick="test7();">
+    <input type="button" value="push | pop | unshift | shift" onclick="test8();">
+    <input type="button" value="slice" onclick="test9();">
+    <input type="button" value="splice" onclick="test10();">
+    <input type="button" value="toString" onclick="test11();">
+    <input type="button" value="forEach" onclick="test12();">
+
+    <script>
+
+    /**
+     * forEach(function) : 매 요소마다 실행할 callback 함수를 인자로 전달함.
+     */ 
+    function test12(){
+        var arr = ['a', 'b', 'c'];
+        var copy = [];
+        //배열의 매 요소가 item매개변수에 전달된다.
+        arr.forEach(function(item) {
+            console.log(item);
+            copy.push(item);
+        });
+
+        console.log(copy);
+    }
+
+    /**
+     * toString : Object최상위클래스의 메소드. 자식객체들은 이를 상속받아 사용할 수 있다.
+     *            객체가 문자열로써 표현될때 자동으로 호출됨.
+     */ 
+    function test11(){
+        var arr = new Array("홍길동", "신사임당", "세종대왕", "윤봉길");
+        console.log(arr);
+        console.log("arr = " + arr);
+        console.log("arr = " + arr.toString()); //위와 같은 결과
+    }
+    
+    /**
+     * splice(startIndex[, deleteCount[, item1, item2,...]]) : 요소제거 및 삽입
+     *     startIndex : 요소제거 및 삽입 인덱스
+     *     deleteCount : 제거할 요소 개수
+     *     item1... : 추가할 요소(개수 제한 없음)
+     * 
+     * 원본배열 변경, 제거된 요소가 배열로 리턴
+     */
+    function test10() {
+        var arr = ['a', 'b', 'c'];
+        arr.splice(1, 1, 'x', 'y', 'z'); //["a", "x", "y", "z", "c"]
+        arr.splice(1, 3, 'k', 'h'); //["a", "k", "h", "c"]
+        arr.splice(3, 0, 'i', 'j'); //삭제할 요소 0개 ["a", "k", "h", "i", "j", "c"]
+        arr.splice(3); //3번지 이후 모두 제거 ["a", "k", "h"]
+
+        console.log(arr);
+    }
+
+    /**
+     * slice(startIndex, endIndex) : 배열요소 일부를 가져와서 새 배열로 리턴
+     *      startIndex : inclusive
+     *      endIndex : exclusive. 생략시 배열 마지막 인덱스까지 가져온다.
+     */ 
+    function test9() {
+        var arr = ['html5', 'css3', 'javascript6'];
+        var another = arr.slice(1, 3); //3번지는 미포함되어서 2번지까지 가져옴
+        var another = arr.slice(1); 
+        var another = arr.slice(); //인자가 없다면 전체카피 
+
+        console.log(another);
+    }
+
+    /**
+     * push : 배열 마지막 인덱스에 요소추가후 변경된 길이를 리턴
+     * pop : 배열 마지막 인덱스의 요소를 제거하고, 제거된 요소를 리턴
+     * unshift : 배열 0번지에 요소추가후 변경된 길이를 리턴
+     * shift : 배열 0번지 요소를 제거한후, 제거된 요소를 리턴
+     * 
+     * 원본 배열 변경
+     */ 
+    function test8() {
+        var arr = new Array();
+        arr.push(1);
+        arr.push(2);
+        arr.push(3);
+        console.log(arr);
+        var removedItem = arr.pop();
+        console.log(removedItem);
+
+        arr.unshift("a");
+        arr.unshift("b");
+        arr.unshift("c");
+        
+        console.log(arr);
+    }
+    /**
+     * sort 오름차순(기본값), 내림차순 정렬. 원본배열 수정
+     */
+    function test7() {
+        var arr = [3,2,4,5,1];
+        console.log(arr.sort());// [1, 2, 3, 4, 5]
+        console.log(arr); // [1, 2, 3, 4, 5]
+
+        //내림차순 : 정렬기준 함수
+        //음수 | 0 | 양수
+        arr.sort(function(a, b){
+        return b - a;
+        });
+        console.log(arr);
+
+        //문자열 오름차순 : 사전등재순
+        var names = ['홍길동', '김영미', '사오리'];
+        names.sort();
+        console.log(names);//["김영미", "사오리", "홍길동"]
+
+        //문자열 내림차순 : 정렬기준함수
+        //문자열간에는 - 연산 불가. 비교연산 가능.
+        console.log('홍길동' - '김영미');//NaN
+        console.log('홍길동' > '김영미');//true
+
+        names.sort(function(a, b){
+        if(a > b) return -1; //음수일때 자리교환이 일어남
+        if(b > a) return 1;
+        return 0;
+        });
+    }
+
+    /**
+     * reverse : 원본배열 변경
+     */ 
+    function test6() {
+        var arr = ['e','c','b','a','d'];
+        console.log(arr.reverse()); //["d", "a", "b", "c", "e"]
+        console.log(arr); //["d", "a", "b", "c", "e"]
+    }
+
+    /**
+     * join : 제공된 구분자를 기준으로 요소를 합쳐서 문자열로 리턴
+     */
+    function test5() {
+        var arr = [1,2,3,4,5];
+        // var s = arr.join("-");
+        var s = arr.join(); //제공된 구분자가 없다면 기본적으로 콤마가 들어감
+        console.log(s);
+        console.log(typeof s);
+    }
+
+    /**
+     * concat : 두 배열의 요소를 합쳐서 하나의 배열로 리턴. 원본배열유지.
+     */ 
+    function test4() {
+        var arr1 = ['a','b','c'];
+        var arr2 = new Array(1,2,3,4,5);
+        var arr3 = arr1.concat(arr2);//["a", "b", "c", 1, 2, 3, 4, 5]
+
+        console.log(arr1);
+        console.log(arr2);
+        console.log(arr3);
+    }
+
+    /**
+     * indexOf
+     */
+    function test3() {
+        var arr = ['apple', 'strawberry', 'melon', 'banana', 'melon'];
+        var idx = arr.indexOf('melon'); 
+        var idx = arr.indexOf('watermelon'); //-1
+        var idx = arr.lastIndexOf('melon'); //4
+        console.log(idx); 
+    }
+
+    </script>
+
+    <p>
+        @실습문제 : 사용자로부터 좋아하는 음식을
+        ,(콤마) 구분자로 하나의 문자열로 입력받은 후, 가나다순 정렬하여 html li 태그에 출력하세요.
+        예) 떡볶이, 피자, 참치회, 파전, 김치찌개
+    </p>
+
+    <input type="button" value="실행" onclick="test13();">
+    <ol id="result"></ol>
+
+    <script>
+    function test13() {
+
+        var inputFood = prompt("좋아하는 음식을 넣어봐(콤마로 구분)");
+        var arr = inputFood.split(",");
+        arr.sort();
+
+        var ol = document.getElementById("result");
+            ol.innerHTML = "";
+
+        arr.forEach(function(item) {
+                ol.innerHTML += "<li>" + item + "</li>";
+        });
+
+    }
+    </script>
+</body>
+</html>

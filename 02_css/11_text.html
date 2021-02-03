@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text</title>
+</head>
+<body>
+    <h1>Text</h1>
+    <!-- div.wrapper>(p>lorem)*5 -->
+    <div class="wrapper">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi omnis, odio optio quidem illum nesciunt quia nam consequuntur consequatur voluptatem autem similique ipsa assumenda amet, aliquam cumque nobis vero expedita.</p>
+        <p>Culpa sunt vel consequuntur eveniet voluptates, tenetur corrupti mollitia iusto natus a odio vero quaerat voluptatum, saepe adipisci alias, officia sed temporibus! Sed earum molestiae distinctio, eveniet eaque sequi harum.</p>
+        <p>Tenetur, natus. Vitae molestias velit, ullam sequi veniam praesentium quos corrupti accusamus odit ducimus corporis nostrum cumque ipsa. Cum qui dolores, voluptates sapiente minus dolore reiciendis nobis corrupti et quasi.</p>
+        <p>Saepe quae nostrum autem, magnam perferendis inventore impedit doloribus earum laboriosam accusamus et provident eveniet ab blanditiis consequatur! Neque nobis consequatur perspiciatis eveniet maiores id inventore ut quae delectus vero.</p>
+        <p>Repellendus quos delectus sapiente dolor culpa voluptas dicta reiciendis consequatur ex ipsam voluptates vero alias facilis nemo saepe dolorem, quae quis? Sunt dolorum eum vitae laboriosam. Molestias minima velit laborum.</p>
+    </div>
+    <style>
+    .wrapper p::first-letter {
+        font-size: 2em;
+    }
+
+    /* counter */
+    .wrapper {
+        counter-reset: num; /* 카운터 변수 */
+    }
+
+    .wrapper p::before {
+        counter-increment: num;
+        content: counter(num) ". ";
+    }
+
+    .wrapper p::after {
+        content: '😒';
+    }
+
+    .wrapper p::selection {
+        /* 드래그 시 효과 */
+        background-color: gainsboro;
+        color: gray;
+    }
+
+    .wrapper p {
+        line-height: 30px;
+    }
+    </style>
+</body>
+</html>

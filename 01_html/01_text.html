@@ -1,0 +1,71 @@
+<!-- emmet 기능 사용하기 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text</title>
+</head>
+<body>
+    <h1>Text관련태그</h1>
+    <a href="index.html">index.html</a>
+
+    <!-- 헤더(머릿글) 태그 -->
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+    <!-- h$*6 : 한번에 h1 ~ h6까지 만들어주는 emmet-->
+    <!-- h${제목}*6 : 안의 내용까지 넣어준다 -->
+    <!-- 부모자식관계 li>h1{리스트} -->
+
+    <!-- 문단태그 -->
+    <!-- lorem ipsum : 채우기 텍스트 -->
+    <!-- html에서는 개행 또는 여러 공백문자는 모두 하나의 공백으로 취급 -->
+    <!-- p>lorem -->
+    <!-- &nbsp; 공백 / <br> 개행 -->
+    <p>Lorem &nbsp;ipsum dolor sit amet consectetur adipisicing elit. 
+        <br>Ea asperiores tempora non vero error expedita reiciendis neque cum distinctio quo, blanditiis quod voluptate facilis? Beatae pariatur eveniet est iure modi!</p>
+    <!-- (p>lorem)*3 -->
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id, doloremque reprehenderit animi quaerat quae earum est placeat accusantium, dolor amet magnam repudiandae illum dolores fugiat ipsa, facilis error eligendi assumenda.</p>
+    <p>Officiis earum laborum amet veniam magni, ipsam modi sunt saepe minus quaerat quisquam illum nemo reprehenderit ipsum atque eveniet aut sit nihil. Porro, sequi perspiciatis animi quos hic delectus adipisci?</p>
+    <p>At, itaque voluptas! Possimus temporibus pariatur ex ipsa nisi veritatis dolorum soluta minus voluptates. Minima nobis expedita autem odio impedit ipsa veritatis esse, beatae sit eligendi iste necessitatibus at voluptatum?</p>
+
+    <!-- 특수문자 -->
+    <!-- "특수문자" & <tag> -->
+    <p>&quot;특수문자&quot; &amp; &lt;tag&gt;</p>
+
+    <!-- phrase tag : 정보에 추가적인 기능이 더해진 태그 -->
+    <!-- semmantic tag(의미있는) -->
+    <em>기울여서 문자를 강조(emphasized)</em>
+    <strong>굵게 bold체로 강조</strong>
+    <del>취소선</del>
+    <mark>형광펜효과를 부여</mark>
+    <ins>밑줄을 추가</ins>
+
+    <!-- abbreviation 축약형(툴팁이 나옴) -->
+    <br>
+    <br>
+    <mark><abbr title="Internet Of Things">IOT</abbr>는 각종 사물의 센서와 통신기능을 내장하고 있다.</mark>
+    <br>
+    <blockquote cite="http://iei.or.kr">소 잃고 외양간 고치다.</blockquote>는 말이 있습니다.
+    <br>
+    <code>
+        <pre><!-- preformatted : 작성한 내용 그대로 시각화. 개행, 공백문자를 유지-->
+        public class Hello World {
+            
+        }
+        </pre>
+    </code>
+
+    <!--
+        태그의 종류
+        1. inline요소 : 태그 다음에 개행되지 않음. span, del, em, strong
+        2. block요소 : 태그 다음에 개행됨. h1, p, div...
+    -->
+
+
+</body>
+</html>

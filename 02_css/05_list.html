@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록</title>
+</head>
+<body>
+    <h1>목록</h1>
+
+    <nav>
+        <ul id="menu">
+            <li><a href="#">html5</a></li>
+            <li><a href="#">css3</a></li>
+            <li><a href="#">javascript6</a></li>
+            <li><a href="#">jquery</a></li>
+            <li><a href="#">bootstrap</a></li>
+            <li><a href="#">foundation</a></li>
+            <li><a href="#">react.js</a></li>
+            <li><a href="#">vue.js</a></li>
+        </ul>
+    </nav>
+    
+    <style>
+    nav {
+        height: 30px;
+        background-color: mistyrose;
+    }
+
+    #menu {
+        /* 기본 적용되어 있던 리스트 스타일 제거(bullet 제거) */
+        list-style: none;
+        /* 기본 padding값이 40이므로 0으로 수정 */
+        padding-left: 0;
+        width: 600px;
+        margin: 0 auto;
+    }
+    
+    #menu li {
+        float: left; /* 가로로 배치 */
+        margin-right: 15px; /* 요소간의 간격 */
+        padding: 3px 0; /* 위로 살짝 쏠려있어서 간격 부여 */
+    }
+
+    #menu li a {
+        text-decoration: none; /* 언더라인 제거 */
+        color: tomato;
+        font-weight: lighter;
+        font-family: sans-serif;
+    }
+
+    #menu li:hover {
+        border-bottom: 2px solid white;
+        text-shadow: 2px 2px 3px white;
+    }
+    </style>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+
+    <!-- 여기가 li id="li3" !!가장 선호되는 타입!! -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 여기가 li id="li2" -->
+    <style>
+    /*css 작성 영역, 관례상 head tag 내부에 적으며 브라우저 입장에서도 해석하기 좋다.*/
+    #li2 {
+        color: tomato;
+    }
+    </style>
+</head>
+<body>
+    <h1>Hello CSS</h1>
+    <ol>
+        <li style="color:teal;">tag의 style속성에 css기술. lnline에 작성</li>
+        <li id="li2">문서내의 style태그안에 작성. 내부 stylesheet 사용</li>
+        <li class="group-1" id="li3">외부 stylesheet를 작성하고, 현재 문서와 연결. link 태그 이용</li>
+    </ol>
+
+    <h1>Selector</h1>
+    <p class="group-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis eum optio saepe molestias. Voluptas fuga enim corporis porro placeat commodi quasi pariatur aspernatur laboriosam unde asperiores, animi suscipit illum assumenda.</p>
+    <p class="group-1 group-2">Minima, voluptatibus id. Officia praesentium nulla, ad cupiditate dolore iste ducimus unde ipsam modi, nam tenetur dolores? Quis, possimus? Voluptas, ut aliquid porro sequi ducimus dolore consequatur quasi laborum explicabo?</p>
+    <p class="group-2" id="special">Quaerat mollitia et eum reprehenderit ex! Commodi repudiandae laboriosam aliquam. Deleniti a alias unde fugit, asperiores ipsa culpa quaerat rem nisi earum molestiae similique, veniam fugiat itaque. Excepturi, in dignissimos?</p>
+
+    <!-- 추천하는 형식 아님, 수업 이해 편의상 여기에 기술 -->
+    <!-- CSS selector에 대한 내용 참조 https://www.w3schools.com/cssref/css_selectors.asp -->
+    <!-- 여러 선택자를 콤마(,)를 통해서 같이 적용할 수 있다. -->
+    <style>
+    /*태그 선택자*/
+    p {
+        color: gold;
+    }
+    /*클래스 선택자*/
+    p.group-1 {
+        background-color: orange;
+    }
+    .group-2 {
+        font-size: 20px;
+    }
+    .group-1.group-2 {
+        text-decoration: underline;
+        /* 동시에 다 가진 그룹만 적용됨 */
+    } 
+    /*아이디 선택자*/
+    #special {
+        border: 1px solid hotpink;
+    }
+
+    </style>
+
+    <div id="mydiv">
+        <h4>#mydiv의 자식h4</h4>
+        <!-- ul#myul>li*2 -->
+        <ul id="myul">
+            <li>#myul의 자식 li</li>
+            <li>#myul의 자식 li</li>
+        </ul>
+        <div id="otherdiv">
+            <h4>#otherdiv의 자식h4</h4>
+            <ul id="otherul">
+                <li>#otherul의 자식li</li>
+                <li>#otherul의 자식li</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        /* 직계자식 */
+        /* div#mydiv > h4 {
+            color: pink; */
+        /* } */
+
+        /* 후손 */
+        /* div#mydiv h4 {
+            color: plum; */
+        /* } */
+
+        /* #mydiv의 자식 ul태그만 배경색 지정*/
+
+        div#mydiv > ul {
+            background-color: powderblue;
+        }
+    </style>
+
+        <div class="wrapper">
+            <!-- p#myp${테스트$}*5 -->
+            <p id="myp1">테스트1</p>
+            <p id="myp2">테스트2</p>
+            <p id="myp3">테스트3</p>
+            <p id="myp4">테스트4</p>
+            <p id="myp5">테스트5</p>
+        </div>
+
+        <style>
+            /* 형제 선택지 */
+            /* 다음 하나 */
+            /* .wrapper #myp2{ 
+                color: springgreen;
+            /* } /*wrapper > #myp2와 같다 후손이 더 없으므로 */
+            .wrapper #myp2 + p{
+                color: teal;
+            }
+            /* 다음에 위치한 모든 p형제태그 */
+            .wrapper #myp2 ~ p{
+                color: yellowgreen;
+            }
+            /* 다음에 위치한 모든 형제태그 */
+            .wrapper #myp2 ~ *{
+                color:aquamarine;
+            }
+        </style>
+    
+        <fieldset>
+            <input type="text"><br>
+            <input type="text" name="username"><br>
+            <input type="text" name="middlename"><br>
+            <input type="email" name="user-email"><br>
+        </fieldset>
+
+        <style>
+        /* 속성 선택자 */
+        
+        /* [name] {
+            width: 300px;
+        } */
+
+        /* 정확히 일치하는 것만 배경색 지정 */
+        /* [name=username] { 
+            background-color: powderblue;
+        } */
+
+        /* name값이 user로 시작하는것 */
+        /* [name^=user] {
+            border: 2px solid greenyellow;
+        } */
+
+        /* name값이 name으로 끝나는 것*/
+        /* [name$=name] {
+            border: 2px solid greenyellow;
+        } */
+
+        /* name 값에 e가 들어가는 것 모두*/
+        [name*=e] {
+            border: 2px solid greenyellow;
+        }
+        </style>
+
+        <div class="container">
+            <p id="active">클릭해주세요.</p>
+            <p id="hover">마우스오버해주세요.</p>
+            <p><a href="http://www.innerbody.com/htm/body.html">http://www.innerbody.com/htm/body.html</a></p>
+            <p>
+                <input type="checkbox" name="mailOK" id="mailOK">
+                <label for="mailOK">메일수신여부</label>
+            </p>
+        </div>
+        <style>
+        /*가상선택자 :으로 시작하는 상태선택자*/
+        .container p#active:active {
+            text-decoration: underline;
+        }
+
+        /* "마우스오버해주세요" 호버시*/
+        .container p#hover:hover {
+            background-color: grey;
+            color: white;
+        }
+
+        /*링크 방문전*/
+        .container a:link {
+            color: aquamarine;
+            text-decoration: none;
+        }
+
+        /*링크 방문후*/
+        .container a:visited {
+            color: rgb(112, 80, 255);
+        }
+
+        /*링크 텍스트 호버시*/
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        /*링크 텍스트 클릭 후 변경되는 색상*/
+        .container a:active {
+            color: crimson;
+        }
+
+        /*메일수신여부 체크시 체크박스의 크기변화*/
+        .container input[type=checkbox]:checked {
+            width: 20px;
+            height: 20px;
+        }
+
+        /*메일수신여부 체크시 라벨에 underline*/
+        .container input[type=checkbox]:checked + label {
+            text-decoration: underline;
+        }
+
+        /*input text에 마우스 클릭하면 커서가 깜박이는 상태일 때 배경색 지정*/
+        input[type=text]:focus {
+            background-color: lavender
+        }
+        </style>
+
+        <div class="wrap">
+            <!-- p{테스트$}*5 -->
+            <pre>테스트0</pre>
+            <p>테스트1</p>
+            <p>테스트2</p>
+            <p>테스트3</p>
+            <p>테스트4</p>
+            <p>테스트5</p>
+            <pre>테스트6</pre>
+        </div>
+
+        <style>
+        /* 구조선택자 */
+
+        /* wrap의 첫번째 하위(자식)가 누구냐 */
+        /* .wrap :first-child, .wrap :last-child {
+            color: coral;
+        } */
+
+        /* wrap의 세번째 하위(자식)에 취소선*/
+        /* .wrap :nth-child(3) {
+            text-decoration: line-through;
+        } */
+
+        /*2의 배수 하위(짝궁)들에 언더라인*/
+        /* .wrap :nth-child(2n) {
+            text-decoration: underline;
+        } */
+
+        /*첫번째 p타입*/
+        .wrap p:first-of-type {
+            color: yellowgreen;
+        }
+
+        /*마지막 p타입*/
+        .wrap p:last-of-type {
+            color: teal;
+        }
+
+        /*2의 배수 p타입*/
+        .wrap p:nth-last-of-type(2n) {
+            text-decoration: underline;
+        }
+
+        /* 부정선택자 */
+
+        /* p태그가 아니면 텍스트에 컬러 > pre태그에 걸리겠지 */
+        .wrap :not(p) {
+            color: tomato;
+        }
+
+        </style>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@실습문제_객체배열</title>
+
+    <style>
+    img {
+        width: 500px;
+        margin: 10px 0;
+    }
+    </style>
+</head>
+<body>
+    <!-- 2021_01_20 과제 -->
+    <h1>학생 객체 관리</h1>
+    <img src="images/실습문제_객체_성적테이블.png" alt="">
+    <hr>
+    <input type="button" value="실행1" onclick="test1();">
+    <input type="button" value="실행2" onclick="test2();">
+
+    <script>
+    /**
+     * 생성자 함수 이용버젼
+     * (공통된 코드는 prototype객체를 이용할 것)
+     */ 
+    function test2(){
+  
+    }
+    function test1() {
+        var student1 = {
+            이름 : '김동현',
+            java : 90,
+            oracle : 56,
+            html5 : 56,
+            css3 : 45,
+            javascript : 34
+        };
+        var student2 = {
+            이름 : '홍길동',
+            java : 45,
+            oracle : 76,
+            html5 : 34,
+            css3 : 33,
+            javascript : 56
+        };
+        var student3 = {
+            이름 : '유관순',
+            java : 76,
+            oracle : 34,
+            html5 : 54,
+            css3 : 56,
+            javascript : 22
+        };
+
+        var arr = [];
+        arr.push(student1);
+        arr.push(student2);
+        arr.push(student3);
+
+        console.log(arr);
+
+        for(var i in arr) {
+            arr[i].총점 = arr[i].java + arr[i].oracle + arr[i].html5 + arr[i].css3 + arr[i].javascript;
+            arr[i].평균 = Math.round(arr[i].총점/ 5 * 10) / 10;
+        
+            arr[i].toString = function() {
+                return "{이름 = " + this.이름 + ", java = " + this.java + 
+                        ", oracle =" + this.oracle + ", html5 = " + this.html5 + 
+                        ", css3 = " + this.css3 + ", javascript = " + this.javascript + 
+                        ", 총점 = " + this.총점 + ", 평균 = " + this.평균 + "}";
+            }
+        }
+        //객체별 문자열 출력
+        for(var i in arr) {
+            console.log(arr[i].toString());
+        }
+    }
+
+    </script>
+
+</body>
+</html>

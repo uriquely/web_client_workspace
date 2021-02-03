@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+<body onload="init();" onclick="console.log('body onclick 작동!!!')">
+    <h1>Event</h1>
+    <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">HTML DOM Event</a>
+
+    <h2>EventHandler Binding</h2>
+    <!-- on + event명 -->
+    <input type="button" value="inline event 속성" onmouseover="alert('안녕');">
+    <input type="button" value="event속성에 handler함수 바인딩" id="btn2">
+    <input type="button" value="addEventListener사용" id="btn3">
+
+    <script>
+    
+    /**
+     * addEventListener("이벤트명", callbackFunction)
+     */
+    btn3.addEventListener("click", function(){
+        console.log("#btn3 click!");
+    });
+    /**
+     * 함수를 바인딩.
+     * 함수실행결과를 바인딩하지 않도록 주의.
+     */
+    btn2.onclick = function() {
+        console.log("#btn2를 click하셨습니다.");
+    };
+
+    // 이렇게 하면 아무일도 생기지 않음
+    // foo()가 리턴한 값을 onclick에 대입하는 셈
+    // 리턴값이 없잖음
+    btn2.onclick = foo; //이렇게 ()없이 foo 자체를 전달해야 작동된다.
+    function foo() {
+        console.log("foo실행!");
+    }
+    </script>
+
+    <h2>load 이벤트</h2>
+    <script>
+    //1.body태그에 onload속성 작성
+    function init(){
+    console.log("페이지 로딩이 완료되었습니다.");
+    }
+
+    //2.window.onload속성에 이벤트핸들러함수 바인딩
+    window.onload = function(){
+    console.log("Page Loading Complete!");
+    };
+
+    //3. addEventListener사용
+    //태그의 이벤트속성과는 별개로 처리
+    //같은 이벤트에 대해 복수개의 핸들러 바인딩 가능
+    window.addEventListener("load", function(){
+        console.log("Load1!");
+    });
+
+    window.addEventListener("load", function(){
+        console.log("Load2!");
+    });
+    </script>
+
+    <h2>event객체 | event target객체</h2>
+
+    <div id="test"></div>
+    <!-- event inline속성에 핸들러 바인딩하는 경우, event매개인자값은 고정 -->
+    <!-- 알트 + 쉬프트 + a -->
+    <input type="text" id="userInput" onkeypress="checkString(event);">
+
+    <style>
+    div#test {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+    }
+    </style>
+
+    <script>
+    
+    /* 
+    * KeyEvent
+    */
+    function checkString(e) {
+        console.log(e);
+        if(e.keyCode == 13) { //13이 엔터
+            alert(e.target.value);
+            e.target.value = '';
+        }
+    }
+
+    /**
+     * event 객체
+     *      event handler함수가 호출될때,
+     *      발생 이벤트에 대한 정보를 가진 이벤트 객체가 첫번째 인자로 전달된다
+     * 
+     * event.target
+     *      event가 발생한 태그요소
+     */
+    test.onmouseover = function(e) {
+        console.log(e);
+
+        // e.target.style.backgroundColor = "springgreen";
+        this.style.backgroundColor = "hotpink";
+
+        //이벤트핸들러 함수 안에서 this는 event target 객체를 가리킨다.
+    }
+
+    test.onmouseout = function(e) {
+        console.log(e);
+
+        this.style.background = "#FFF";
+    }
+    </script>
+
+
+
+    <p>
+        @실습문제:
+        "Naver" - http://naver.com
+        "Google" - http://google.com
+        "KH정보교육원" - http://iei.or.kr
+        위 정보를 객체로 관리할 것. url이라는 사용자 속성을 생성할것.
+        <!-- <input type="button" value="Naver" url="http://naver.com"> -->
+
+        실행버튼을 클릭하면, div.btn-container하위에 버튼3개를 동적으로 생성.
+        생성된 각버튼을 클릭하면, 해당 url로 이동할 것.
+    </p>
+    <input type="button" value="실행" onclick="test1(event);">
+    <div class="btn-container"></div>
+    <script>
+    function test1(e){
+        //1.객체배열로 정보 관리
+        var arr = [
+        new Link("Naver", "http://naver.com"),
+        new Link("Google", "http://google.com"),
+        new Link("KH정보교육원", "http://iei.or.kr")
+        ];
+
+        //2.각 정보를 바탕으로 div.btn-container에 동적추가
+        var container = document.querySelector(".btn-container");
+        for(var i in arr){
+        var link = arr[i];
+        container.innerHTML += "<input type='button' value='" + link.name 
+                            + "' url='" + link.url 
+                            + "' onclick='goToUrl(event);'/>"
+        }
+
+        //3. 1회 이용후 핸들러 제거
+        e.target.onclick = null;
+    }
+
+    function Link(name, url){
+    this.name = name;
+    this.url = url;
+    }
+
+    /**
+     * 생성버튼에 대한 이벤트 핸들러 
+     * 
+     * 사용자정의 속성을 가져올때는 getAttribute("속성명")을 사용!
+     * 
+     */ 
+    function goToUrl(e){
+        //1.버튼의 url속성
+        // var btn = this;//인라인속성으로 핸들러를 호출한 경우 this는 이벤트타켓이 아님.
+        var btn = e.target;
+        
+        console.dir(btn);
+
+        var url = btn.getAttribute("url");
+        console.log(url);
+
+        //2.location.href속성을 통한 페이지이동
+        location.href = url;
+    }
+    </script>
+
+    <h2>Event Propagation 전파</h2>
+
+    <ul>
+        <li>event bubbling : 자식에서 부모로 이벤트 전파</li>
+        <li>event capturing : 부모에서 자식으로 이벤트 전파</li>
+    </ul>
+
+    <!-- div.event-propagation.div1 -->
+    <div class="event-propagation div1" onclick="test2(event, 'div1');">
+        <div class="event-propagation div2" onclick="test2(event, 'div2');">
+            <div class="event-propagation div3" onclick="test2(event, 'div3');"></div>
+        </div>
+    </div>
+
+    <style>
+    .event-propagation {
+        border: 1px solid #FFF;
+        padding: 20px;
+    }
+
+    .div1 {background-color: black;}
+    .div2 {background-color: grey}
+    .div3 {background-color: gainsboro;}
+    </style>
+
+    <script>
+    function test2(e, msg){
+        alert(msg);
+
+        //이벤트 전파방지
+        e.stopPropagation();
+    }
+    </script>
+
+</body>
+</html>

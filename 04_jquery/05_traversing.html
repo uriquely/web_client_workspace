@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversing</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+        .wrap * {
+            border: 1px solid lightgray;
+            display: block;
+            padding: 5px;
+            margin: 15px;
+            color: gray;
+        }
+        .type { 
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traversing</h1>
+
+    <div class="wrap">
+		<div class="type">div.type (great-grandparent)
+			<ul>ul (grandparent)
+				<li>li (direct parent)
+					<span>span1</span>
+				</li>
+				<li>li (direct parent)
+					<span>span2</span>
+				</li>
+			</ul>
+		</div>
+		<div class="type">div.type (grandparent)
+			<p>p (direct parent)
+				<span>span3</span>
+			</p>
+        </div>
+
+
+	<!-- @실습문제 -->
+	<div class="type test">
+			div.test
+			<ul>
+				ul1
+				<li>li1-1</li>
+				<li>
+					li1-2
+					<ul>
+						ul2
+						<li>li2-1</li>
+						<li>li2-2</li>
+						<li>
+							li2-3
+							<ul>
+								ul3
+								<li>
+									li3
+									<span id="fromMe">fromMe</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+    </div> <!-- end of .wrap-->
+    
+    <h2>1.부모 메소드</h2>
+    <input type="button" value="parent()" id="btn1">
+    <input type="button" value="parents()" id="btn2">
+    <input type="button" value="parentsUntil()" id="btn3">
+
+    <script>
+
+    /**
+     * parentsUntil([selector])
+     *      선택자 이전의 조상요소
+     */
+    $(btn3).click(function(){
+        $("span")
+            .parentsUntil("div") // div태그 전까지의 조상요소만
+            .css(style);
+    });
+
+    /**
+     * parents([selector])
+     *      조상요소
+     */
+    $(btn2).click(function(){
+        $("span")
+            .parents("div") // div태그의 조상요소들만(복수형)
+            .css(style);
+    });
+
+    /**
+     * parent([selector])
+     *      직계부모요소
+     */
+    $(btn1).click(function(){
+        var $span = $("span");
+        $span
+            .parent("li") //직계부모요소중 li태그만(p태그는 제외)
+            .css(style);
+    });
+
+    var style = {
+        color : "red",
+        border : "2px solid red"
+    };
+    </script>
+
+    <h2>2.자식 메소드</h2>
+    <input type="button" value="children()" id="btn4">
+    <input type="button" value="find()" id="btn5">
+    <input type="button" value="@실습문제" id="btn6">
+
+    <script>
+    /**
+     * .wrap에서 시작해서 li2-2태그 선택하기
+     * 
+     * span#FromMe에서 시작헤서 li2-2태그 선택하기
+     */
+    $(btn6).click(function(){
+        // $(".wrap")
+        //     .find('li:eq(5)')
+        //     .css(style);
+        $("span#fromMe")
+            .parents("ul")
+            .eq(1)
+            .children("li:eq(1)")
+            .css(style);
+    });
+
+    /**
+     * find(selector)
+     *      후손요소중에 선택자 해당요소
+     */
+    $(btn5).click(function(){
+        $(".wrap")
+            .find("span") //선택자 지정한 해당요소 모두
+            .css(style);
+    });
+
+    /**
+     * children([selector])
+     *      직계자식요소
+     */
+    $(btn4).click(function(){
+        $(".wrap")
+            .children(":has(ul)") //직계자식 요소 중 ul태그를 가진(has) 요소만
+            .css(style);
+    });
+    </script>
+
+
+    <h2>3.형제 메소드</h2>
+
+    <!-- .wrap>p+span+(h$)*4+p -->
+    <div class="wrap">div.wrap (parent)
+        <p>p</p>
+        <span>span</span>
+        <h1>h1</h1>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <h4>h4</h4>
+        <p>p</p>
+    </div>
+
+    <input type="button" value="siblings()" id="btn7">
+    <input type="button" value="next()|nextUntil()" id="btn8">
+    <input type="button" value="prev()|prevUntil()" id="btn9">
+
+    <script>
+    
+    /**
+     * prev()
+     * prevAll([selector])
+     * prevUntil(selector)
+     *      해당 선택자 이전 형제요소
+     *      until이란? ...까지 라는 뜻
+     */
+     $(btn9).click(function(){
+        $(".wrap h2")
+            .prevUntil("p") 
+            .css(style);
+    });
+
+    /**
+     * next()
+     * nextAll([selector])
+     * nextUntil(selector)
+     *      해당 선택자 다음 형제요소
+     */
+     $(btn8).click(function(){
+        $(".wrap h2")
+            .nextUntil("p") 
+            .css(style);
+    });
+
+    /**
+     * siblings([selector])
+     *      선택자에 해당하는 형제요소 전부
+     */
+    $(btn7).click(function(){
+        $(".wrap h2")
+            .siblings("p")
+            .css(style);
+    });
+    </script>
+</body>
+</html>

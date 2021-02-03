@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+    <script src="js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <h1>Filter</h1>
+    <!-- div.wrap>p.test{테스트$}*5 -->
+    <div class="wrap">
+      <p class="test">테스트1</p>
+      <p class="test">테스트2</p>
+      <p class="test">테스트3</p>
+      <p>테스트4</p>
+      <p class="test">테스트5</p>
+    </div>
+
+    <input type="button" value="filter()" id="btn1">
+    <input type="button" value="first()" id="btn2">
+    <input type="button" value="last()" id="btn3">
+    <input type="button" value="eq()" id="btn4">
+    <input type="button" value="not()" id="btn5">
+    <script>
+
+    /**
+     * not(선택자)
+     */
+    $(btn5).click(function(){
+        $(".wrap p")
+            .not(".test")
+            .css("background", "gray")
+    });
+
+    /**
+     * eq(index)
+     *      0-based index
+     */
+    $(btn4).click(function(){
+        // eq는 인덱스를 줄 것
+        $(".wrap p")
+            .eq(3)
+            .css({
+                "background" : "gold",
+                "font-size" : "24px"
+            });
+    });
+
+    $(btn3).click(function(){
+        // 마지막 요소
+        $(".wrap p")
+            .last()
+            .css("background", "orange")
+    });
+    
+    $(btn2).click(function(){
+        // 첫 번째 요소
+        $(".wrap p")
+            .first()
+            .css("background", "pink")
+    });
+    /**
+     * filter(선택자)
+     */
+
+     /**
+      * $(".wrap p")
+        jQuery.fn.init(5) [p.test, p.test, p.test, p, p.test, prevObject: jQuery.fn.init(1)]
+        
+        $(".wrap p").filter(":even")
+        jQuery.fn.init(3) [p.test, p.test, p.test, prevObject: jQuery.fn.init(5)]
+      */
+     $(btn1).click(function(){
+        // $(".wrap p")
+            // 짝수번째 요소만
+            // .filter(":even")
+            // 전체가 선택된다(아래 줄만 있을 경우)
+            // .css("color", "hotpink");
+
+            var $p = $(".wrap p");
+
+            // $p하위의 .test요소만
+            // $p
+            //     .filter(".test")
+            //     .css("color", "skyblue");
+
+            // $p하위의 .test가 아닌 요소만
+            // $p
+            //     .filter(":not(.test)")
+            //     .css("color", "gold");
+
+            //callbackFunction전달 : true를 리턴한 요소만 선별
+            $p.filter(function(index, elem){
+                return index % 2 != 0; //홀수 인덱스만
+            }).css("color", "red");
+     });
+    </script>
+</body>
+</html>

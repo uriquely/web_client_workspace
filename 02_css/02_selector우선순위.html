@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자 우선순위</title>
+</head>
+<body>
+    <h1>선택자 우선순위</h1>
+    <ol>
+        <li>!important 키워드를 붙인 속성</li>
+        <li>inline style속성 style="width:100px;"</li>
+        <li>아이디선택자 #myid</li>
+        <li>클래스선택자 .test</li>
+        <li>계층선택자 div > p</li>
+        <li>태그선택자 p</li>
+        <li>모든선택자 *</li>
+        <li>가상선택자 :checked</li>
+        <li>속성[type=text]</li>
+    </ol>
+
+    <!-- inline style 속성을 부여 -->
+    <div id="mydiv" class="mycls" style="background: lightsteelblue;">우선순위테스트</div>
+
+    <style>
+    
+    /* 아이디선택자가 아래 두 선택자보다 우선순위 */
+    /* !important 속성을 부여하여 최상위 우선순위가 되었다. */
+    #mydiv {
+        background: gold !important;
+    }
+
+    /* 태그 선택자 */
+    div {
+        background: lightgrey;
+    }
+
+    /* 클래스 선택자 */
+    /* 나중에 적어서 우선순위가 된 것이 아니라, 클래스 선택자가 태그 선택자보다 우선순위 */
+    .mycls {
+        background: lightsalmon;
+    }
+    </style>
+</body>
+</html>

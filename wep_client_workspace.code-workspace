@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\02_css"
+		},
+		{
+			"path": "..\\03_javascript"
+		},
+		{
+			"path": "..\\04_jquery"
+		},
+		{
+			"path": "..\\05_html5api"
+		}
+	]
+}

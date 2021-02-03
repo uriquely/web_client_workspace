@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <style>
+    form[name=memberEnrollFrm] ul {
+        list-style : none;
+        line-height: 35px;
+    }
+
+    </style>
+    </head>
+    <body>
+    <h2>유효성 검사</h2>
+    <form action="" name="memberEnrollFrm" method="GET">
+        <fieldset>
+        <legend>회원가입</legend>
+        <!-- ul>(li>label+input)*4 -->
+        <ul>
+            <li><label for="memberId">아이디 : </label><input type="text" name="memberId" id="memberId"></li>
+            <li><label for="memberName">이름 : </label><input type="text" name="memberName" id="memberName"></li>
+            <li><label for="pwd">비밀번호 : </label><input type="password" name="pwd" id="pwd"></li>
+            <li><label for="pwdCheck">비밀번호 확인 : </label><input type="password" id="pwdCheck"></li>
+            <li><input type="submit" value="제출"></li>
+        </ul>
+
+        </fieldset>
+    </form>
+    <script>
+    /**
+     * blur event handler
+     */ 
+    pwdCheck.onblur = function(){
+        console.log("포커스를 잃었습니다.");
+        if(pwd.value != pwdCheck.value){
+        alert("비밀번호가 일치하지 않습니다.");
+        pwd.value = '';
+        pwdCheck.value = '';
+        pwd.focus();
+        }
+    };
+
+    var frm = document.querySelector("[name=memberEnrollFrm]");
+    // console.log(frm);
+
+    /**
+     * 폼 유효성 검사
+     * 각 input태그값이 모두 유효할 때만 return true 하고, 폼이 제출된다.
+     * return false하면 폼이 제출되지 않는다.
+     */ 
+    frm.onsubmit = function(){
+        //1.id검사
+        //문자열 길이는 length속성. 메소드아님.
+        if(memberId.value.length < 4){
+        alert("아이디는 4글자 이상이어야 합니다.");
+        memberId.select();
+        return false;//조기리턴 -> 폼제출방지
+        }
+
+        //2.이름 검사 
+        if(/^[가-힣]{2,}$/.test(memberName.value) == false){
+        alert("이름은 한글 2글자 이상이어야합니다.");
+        memberName.select();
+        return false;
+        }
+
+        //3.비밀번호 검사 : 4글자이상 && (pwd.value == pwdCheck.value)
+        if(pwd.value.length < 4){
+        alert("비밀번호는 4글자 이상이어야 합니다.");
+        pwd.select();
+        return false;
+        }
+
+        if(pwd.value != pwdCheck.value){
+        alert("비밀번호가 일치하지 않습니다.");
+        pwd.value = '';
+        pwdCheck.value = '';
+        pwd.focus();
+        return false;
+        }
+
+        return true;
+    };
+    </script>
+
+</body>
+</html>

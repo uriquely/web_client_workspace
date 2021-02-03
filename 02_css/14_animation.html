@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+</head>
+<body>
+    <h1>Animation</h1>
+    <div class="animation"></div>
+    <style>
+    .animation {
+        width: 100px;
+        height: 100px;
+        background-color: gainsboro;
+        border: 1px solid gray;
+    }
+
+    .animation:hover {
+        animation-name: my-keyframe;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes my-keyframe {
+        /* 상태별 지정 */
+        25% {
+            /* 기본상태 기준으로 작성 */
+            transform: translate(100px, 0);
+        }
+
+        50% {
+            transform: translate(100px, 100px);
+        }
+
+        75% {
+            transform: translate(0px, 100px);
+        }   
+
+        100% {
+            transform: translate(0px, 0px);
+            background-color: greenyellow;
+        }
+    }
+    </style>
+</body>
+</html>

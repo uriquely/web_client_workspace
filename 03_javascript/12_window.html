@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window</title>
+</head>
+<body>
+    <h1>Window</h1>
+    <p>브라우저 탭 별로 존재하는 최상위 객체. BOM, DOM, Javascript등으로 구성된다.</p>
+    <img src="images/windowObjects.png" alt="" style="width: 500px; margin: 10px 0;">
+
+    <!-- 대부분의 브라우저는 탭으로 구성되어 작동 
+    탭 하나당 윈도우 객체가 존재한다고 생각할 수 있다. 한 탭이 최상위 객체-->
+
+    <h2>window 메소드</h2>
+    <input type="button" value="alert" onclick="window.alert('안녕');">
+    <input type="button" value="open" onclick="test1();">
+    <input type="button" value="setTimeout" onclick="test2();">
+    <input type="button" value="setInterval" onclick="test3(); this.onclick = null;">
+    <div id="clock"><h3></h3></div>
+
+    <script>
+     /**
+     * window.setInterval(callbackFunction, millis):number
+     *    millis이후 millis간격으로 callbackFunction실행
+     *    intervalId를 리턴
+     *    비동기방식처리. millis에 오차가 있을 수 있다.
+     * 
+     * window.clearInterval(intervalId)
+     *    해당 intervalId를 중지
+     */ 
+    function test3(){
+        var clockContainer = document.querySelector("#clock h3");
+        var cnt = 0;
+
+        var intervalId = setInterval(function() {
+            // clockContainer.innerHTML = cnt++;
+            // if(cnt > 10) {
+            //     clearInterval(intervalId);
+            // }
+
+            //10:31:30
+            var now = new Date();
+            var s = now.getHours().toString().padStart(2, 0) + " : "
+                    + now.getMinutes().toString().padStart(2, 0) + " : "
+                    + now.getSeconds().toString().padStart(2, 0);
+            clockContainer.innerHTML = s;
+
+        }, 1000);
+
+        console.log("intervalId = " + intervalId);
+    }
+
+    /**
+     * window.setTimeout(callbackFuction, millis)
+     *    millis이후 callbackFunction 실행!
+     */ 
+    function test2() {
+        setTimeout(function(){
+            alert('저희 사이트를 방문해 주셔서 감사합니다.')
+        }, 1000);
+    }
+    /**
+     * window.open(url, name, specs)
+     * 
+     * 팝업창, 새로운 탭을 열 수 있는 메소드
+     * 
+     *      url : 접속 경로
+     *      name : 새 창의 이름. window객체의 name속성값
+     *      specs : 기타설정을 문자열 형태로 전달
+     */
+    function test1() {
+        // window.open 가능
+        // open("http://www.naver.com", "naver", "width=500, height=300, top=300, left=200");
+
+        // open("index.html", "index"); //specs 파라미터 생략시 새탭으로 열림
+
+        // 새로 열린 탭 또는 팝업창의 window 객체를 리턴
+        var popup = open("", "popup", "width=500, height=300, top=300, left=200");
+        console.log(popup);
+        popup.document.write("<h1>안녕</h1>");
+
+        popup.alert("hello!");
+
+        //3초후에 콜백함수를 실행해주세요.
+        setTimeout(function() {
+            // open("http://google.com", "popup");
+            popup.close();
+        }, 3000);
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <h2>Table</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>브라우저명</th>
+            <th>제조사</th>
+            <th>홈페이지</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <!-- tr>td*3 -->
+            <tr>
+                <td>Edge</td>
+                <td>MicroSoft</td>
+                <td><a href="https://microsoft.com">https://microsoft.com</a></td>
+            </tr>
+            <tr>
+                <td>Chrome</td>
+                <td>Google</td>
+                <td><a href="https://Google.com">https://Google.com</a></td>
+            </tr>
+            <tr>
+                <td>Safari</td>
+                <td>Apple</td>
+                <td><a href="https://Apple.com">https://Apple.com</a></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">총 브라우저 수 : 3</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <style>
+    /* border는 공간이라 경계선 안쪽이 비어보이는데, collapse로 이를 없앨 수 있다. */
+    table {
+        border: 1px solid gainsboro;
+        border-collapse: collapse;
+        width: 500px;
+        height: 300px;
+    }
+
+    th, td {
+        padding: 10px 0;
+        border: 1px solid gainsboro;
+        /* 테이블은 text-align 사용 시 상하정렬까지 같이 해 줌 */
+        text-align: center;
+        /* vertical-align 수직 정렬 조정 */
+        vertical-align: auto;
+    }
+    </style>
+
+    <h2>table 외 요소의 수직정렬</h2>
+
+    <!-- div.test>span{안녕} -->
+    <div class="test">
+        <span>안녕</span>
+    </div>
+    <style>
+    .test {
+        width: 100px;
+        height: 100px;
+        background-color: gainsboro;
+        margin: 10px auto;
+        text-align: center;
+        /* vertical-align: middle; 추가해도, 아무런 일이 일어나지 않는다. */
+        display: table;
+    }
+    .test span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    </style>
+</body>
+</html>

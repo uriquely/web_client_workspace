@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gallery</title>
+    <style>
+    #gallery li img.pic {
+        display: none;
+        position: absolute;
+        z-index: 99999;
+        margin: -10px 100px;
+    }
+
+    #gallery img.small:hover + img.pic {
+        border: 1px solid black;
+        display: block;
+        width: 240px;
+        height: 180px;
+    }
+
+    #gallery ul {
+        text-align: center;
+        width: 400px;
+        background-color: grey;
+        padding: 30px 30px;
+        margin: 0 auto;
+    }
+    #gallery ul li {
+        display: inline-block;
+        list-style: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <h2>사진 갤러리 만들기</h2>
+    <hr>
+    <div id="gallery">
+        <ul>
+            <li> 
+                <img src="sample/image/flower1.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower1.png" class="pic"> 
+            </li>
+            <li>
+                <img src="sample/image/flower2.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower2.png" class="pic"> 
+            </li>
+            <li>
+                <img src="sample/image/flower3.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower3.png" class="pic"> 
+            </li>
+            <li>
+                <img src="sample/image/flower4.png" class="small" width="120" height="90"> 
+                <img src="sample/image/flower4.png" class="pic"> 
+            </li>
+            <li>
+                <img src="sample/image/flower5.png" class="small" width="120" height="90">
+                <img src="sample/image/flower5.png" class="pic"> 
+            </li>
+            <li>
+                <img src="sample/image/forest1.png" class="small" width="120" height="90">
+                <img src="sample/image/forest1.png" class="pic"> 
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

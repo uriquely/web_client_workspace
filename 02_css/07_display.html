@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<body>
+    <h1>display</h1>
+    <h2>block element</h2>
+    <p>inline-block일때는 block처럼 width와 height값을 가지며, inline처럼 한줄에 배치된다.</p>
+    <!-- div.test.test${div$}*5 -->
+    <div class="test test1 inline-block">div1</div>
+    <div class="test test2 inline-block">div2</div>
+    <div class="test test3 inline-block">div3</div>
+    <div class="test test4 inline-block">div4</div>
+    <div class="test test5 inline-block">div5</div>
+    
+    <style>
+    .test {
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgb(255, 255, 255);
+    }
+
+    .test1 {background-color: crimson;}
+    .test2 {background-color: rgba(220, 20, 60, 0.8);}
+    .test3 {background-color: rgba(220, 20, 60, 0.6);}
+    .test4 {background-color: rgba(220, 20, 60, 0.4);}
+    .test5 {background-color: rgba(220, 20, 60, 0.2);}
+
+    .block {
+        /* span에 block 속성을 주는 법 */
+        display: block;
+    }
+
+    .inline {
+        /* div에 inline 속성을 주는 법 */
+        display: inline;
+    }
+
+    .inline-block {
+        /* width와 height는 유지하되, 한 줄로 나열 */
+        display: inline-block;
+    }
+    
+    </style>
+
+    <h2>inline element</h2>
+    <p>width, height 속성이 무시되고, 컨텐츠 영역에 의해 구분된다.</p>
+    <!-- span.test.test${span$}*5 -->
+    <span class="test test1 inline">span1</span>
+    <span class="test test2 inline">span2</span>
+    <span class="test test3 inline">span3</span>
+    <span class="test test4 inline">span4</span>
+    <span class="test test5 inline">span5</span>
+
+    <h2>안보임처리</h2>
+
+    <ul>
+        <li>display: none</li>
+        <li>visibility: hidden</li>
+        <!-- opacity 투명도 -->
+        <li>opacity: 0</li>
+    </ul>
+
+    <div class="test test1 not">test1</div>
+    <div class="test test2 impact">test2</div>
+
+    <style>
+    .not {
+        /* display: none; 공간까지 숨겨짐*/
+        /* visibility: hidden; 자리하던 공간은 남음*/
+        opacity: 1;
+    }
+
+    .impact {
+        opacity: .7;
+    }
+
+    .impact:hover {
+        opacity: 1;
+    }
+    </style>
+</body>
+</html>

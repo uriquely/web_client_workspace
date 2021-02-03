@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO</title>
+</head>
+<body>
+    <h1>사용자입출력</h1>
+
+    <input type="button" value="경고창" onclick="alert('안녕');">
+    <input type="button" value="콘솔출력" onclick="console.log('Hello World');">
+    <input type="button" value="사용자확인" onclick="test1();">
+    <input type="button" value="사용자문자열입력" onclick="test2();">
+
+    <script>
+    function test1() {
+        // 정말 삭제하시겠습니까? 입력한 정보가 맞습니까? 이런 사용자 확인 팝업창
+
+        // 사용자 확인이 필요한 경우(true, false 리턴)
+        var bool = confirm('삭제하시겠습니까?');
+        console.log(bool);
+
+        if(bool) {
+            alert("파일을 삭제했습니다.");
+        }
+        else {
+            alert("파일삭제를 취소했습니다.");
+        }
+    }
+
+    function test2() {
+        // 사용자 입력값을 받을 때
+        // 아무것도 안 쓰면 "" 빈 값(공란)으로 리턴이 되지만, 취소를 하면 null 리턴
+        var name = prompt("이름을 입력하세요.");
+        console.log(name);
+
+        // null이 리턴된 경우 | 취소
+        // equls는 없다.
+        if(name == null) {
+            alert("이름 입력을 취소하셨습니다.");
+        }
+
+        // 정상적으로 입력된 경우 | 확인
+        else if(name != '') {
+            alert("입력하신 당신의 이름은 " + name + "입니다.");
+        }
+
+        // 공란(빈 문자열)이 입력된 경우 | 확인
+        else if(name == ''){
+            alert("이름을 입력해주세요.");
+        }
+    }
+    </script>
+
+    <h2>태그 컨텐츠 작성하기 | 가져오기</h2>
+
+    <input type="button" value="작성" onclick="test3();">
+    <input type="button" value="가져오기" onclick="test4()">
+    <p></p>
+    <hr><p></p>
+    <div class="area" id="result"></div>
+    <div class="area" id="another"></div>
+
+    <style>
+    .area {
+        width: 300px;
+        min-height: 200px;
+        border: 1px solid gainsboro;
+        background-color: oldlace;
+        padding: 3px;
+        margin: 0 10px;
+        display: inline-block;
+        display: -webkit-box; 
+    }
+    </style>
+
+    <script>
+    function test3() {
+        // innerText | 제공된 문자열을 단순 텍스트로 처리, html태그 무시
+        // innerHTML | 제공된 문자열을 html tag로 처리
+        var txt = "<mark>눈</mark>이 왔습니다.";
+
+        // id값으로 참조중이므로 굳이 변수를 선언하지 않아도 된다.
+        // result.innerText = txt;
+        result.innerHTML = txt;
+    }
+
+    function test4() {
+        // innerText | html 태그 제외하고 컨텐츠를 가져올 때 
+        // innerHTML | html 태그 포함하여 컨텐츠를 가져올 때
+
+        // alert(result.innerText);
+        // alert(result.innerHTML);
+
+        another.innerHTML = result.innerText;
+    }
+    </script>
+</body>
+</html>
